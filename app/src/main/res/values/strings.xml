@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SAHCE_UFCG</string>
+
+    <string name="btn_login_text">Login</string>
+    <string name="btn_send_text">Enviar</string>
+
+    <string name="text_field_name">Nome</string>
+    <string name="text_field_cpf">CPF</string>
+    <string name="text_field_password">Senha</string>
+    <string name="text_field_address">Endereço</string>
+    <string name="text_field_email">Email</string>
+    <string name="text_field_phone">Telefone</string>
+
+    <string name="user_register_header">Cadastrar Usuário</string>
+</resources>
