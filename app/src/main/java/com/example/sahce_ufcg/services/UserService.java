@@ -11,11 +11,6 @@ public interface UserService {
     @POST("/v1/users/")
     Call<UserResponseBody> createUser(@Body User user);
 
-//    @FormUrlEncoded
-//    @Headers("Content-Type: application/x-www-form-urlencoded")
-//    @POST("/v1/anonymous/login")
-//    Call<HttpHeaders> login(@Field("username") String username, @Field("password") String password);
-
-    @POST("/v1/anonymous/login")
-    Call<User> login(@Body User user);
+    @POST("/login")
+    Call<Void> login(@Body User user);
 }

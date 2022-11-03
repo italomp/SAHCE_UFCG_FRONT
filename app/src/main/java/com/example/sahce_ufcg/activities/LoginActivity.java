@@ -53,22 +53,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = String.valueOf(emailEditText.getText());
                 String password = String.valueOf(passwordEditText.getText());
-                System.out.println(email + password); // REMOVERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
                 User newUser = new User(email, password);
                 ApiService.getUserService().login(newUser).enqueue(
-                        new Callback<User>() {
+                        new Callback<Void>() {
                             @Override
-                            public void onResponse(Call<User> call, Response<User> response) {
-                                System.out.println(response.code());
-                                System.out.println(response.message());
-                                System.out.println(response.headers());
-
-
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if(response.isSuccessful()){
+                                    System.out.println(response.headers().get("Authorization"));
+                                }
+                                else{
+                                    System.out.println("Status Code: " + response.code());
+                                }
                             }
 
                             @Override
-                            public void onFailure(Call<User> call, Throwable t) {
+                            public void onFailure(Call<Void> call, Throwable t) {
                                 System.out.println("onFailure");
+                                t.printStackTrace();
                             }
                         }
                 );
