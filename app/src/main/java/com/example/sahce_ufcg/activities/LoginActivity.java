@@ -1,6 +1,8 @@
 package com.example.sahce_ufcg.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,7 +61,9 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.isSuccessful()){
-                                    System.out.println(response.headers().get("Authorization"));
+                                    String token = response.headers().get("Authorization");
+                                    saveToken(token);
+                                    goToDashboard();
                                 }
                                 else{
                                     System.out.println("Status Code: " + response.code());
@@ -75,5 +79,16 @@ public class LoginActivity extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    public void saveToken(String token){
+        SharedPreferences sharedPreferences = this.getSharedPreferences("loginPreferences",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(String.valueOf(R.string.token), token);
+        editor.apply();
+    }
+
+    public void goToDashboard(){
+        startActivity(new Intent(getApplicationContext(), Dashboard.class));
     }
 }
