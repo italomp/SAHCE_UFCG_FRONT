@@ -7,7 +7,7 @@
     tools:context=".activities.Dashboard">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dashboard_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/header_check_times"
@@ -15,5 +15,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_header">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_period_start_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="130dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/input_period_end_layout"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_period_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data Inicial"
+                android:focusable="false"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_period_end_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="130dp"
+            app:layout_constraintStart_toEndOf="@id/input_period_start_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/search_button"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_period_end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data Final"
+                android:focusable="false"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:src="@drawable/ic_search"
+            app:layout_constraintStart_toEndOf="@id/input_period_end_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@color/background_buttons"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

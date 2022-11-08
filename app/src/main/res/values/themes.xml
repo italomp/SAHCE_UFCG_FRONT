@@ -12,11 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:background">@color/background_fields</item>
     </style>
 
     <style name="headers_style">
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textColor">@color/background_buttons</item>
     </style>
 </resources>

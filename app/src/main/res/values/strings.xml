@@ -20,4 +20,8 @@
 
     <!-- Links -->
     <string name="link_signup">Registre-se</string>
+
+    <!-- Labels -->
+    <string name="label_start_period">Data Inicial</string>
+    <string name="label_end_period">Data Final</string>
 </resources>
