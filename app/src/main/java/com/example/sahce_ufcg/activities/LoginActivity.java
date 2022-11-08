@@ -1,5 +1,7 @@
 package com.example.sahce_ufcg.activities;
 
+import static com.example.sahce_ufcg.util.Constants.*;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.services.ApiService;
+import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -20,9 +23,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    TextInputEditText emailEditText, passwordEditText;
-    Button loginButton;
-    TextView signupTextView;
+    private TextInputEditText emailEditText, passwordEditText;
+    private Button loginButton;
+    private TextView signupTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +65,12 @@ public class LoginActivity extends AppCompatActivity {
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.isSuccessful()){
                                     String token = response.headers().get("Authorization");
-                                    saveToken(token);
+                                    savePreferences(token, email);
                                     goToDashboard();
                                 }
                                 else{
-                                    System.out.println("Status Code: " + response.code());
+                                    Util.showMessage(LoginActivity.this,
+                                            "Código de estado HTTP: " + response.code());
                                 }
                             }
 
@@ -81,10 +85,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void saveToken(String token){
-        SharedPreferences sharedPreferences = this.getSharedPreferences("loginPreferences",Context.MODE_PRIVATE);
+    public void savePreferences(String token, String email){
+        SharedPreferences sharedPreferences = this.getSharedPreferences(
+                SHARED_LOGIN_PREFERENCES_KEY,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(String.valueOf(R.string.token), token);
+        editor.putString(TOKEN_KEY, token);
+        editor.putString(USER_EMAIL_KEY, email);
         editor.apply();
     }
 

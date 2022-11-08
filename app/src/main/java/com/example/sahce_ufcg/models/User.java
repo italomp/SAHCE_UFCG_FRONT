@@ -65,4 +65,7 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public enum UserType{
+        ADMIN, EXTERNAL_USER, INTERNAL_USER
+    }
 }

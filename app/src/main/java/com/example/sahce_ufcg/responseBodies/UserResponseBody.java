@@ -1,5 +1,6 @@
 package com.example.sahce_ufcg.responseBodies;
 
+import com.example.sahce_ufcg.models.User;
 import com.squareup.moshi.Json;
 
 public class UserResponseBody {
@@ -13,13 +14,17 @@ public class UserResponseBody {
     private String email;
     @Json(name = "password")
     private String password;
+    @Json(name = "userType")
+    private User.UserType userType;
 
-    public UserResponseBody(String name, String phone, String address, String email, String password) {
+    public UserResponseBody(String name, String phone, String address, String email,
+                            String password, User.UserType userType) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.password = password;
+        this.userType = userType;
     }
 
     public UserResponseBody() {
@@ -65,4 +70,11 @@ public class UserResponseBody {
         this.password = password;
     }
 
+    public User.UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(User.UserType userType) {
+        this.userType = userType;
+    }
 }

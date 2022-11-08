@@ -16,10 +16,8 @@
     <!-- Headers -->
     <string name="header_user_register">Cadastrar Usuário</string>
     <string name="header_login">Login</string>
+    <string name="header_check_times">Consultar Horários</string>
 
     <!-- Links -->
     <string name="link_signup">Registre-se</string>
-
-    <!-- Key for access token in shared preferences -->
-    <string name="token">token</string>
 </resources>
