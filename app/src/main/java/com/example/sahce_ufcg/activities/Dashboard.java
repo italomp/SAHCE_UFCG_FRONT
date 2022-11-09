@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +22,7 @@ import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -29,6 +33,9 @@ public class Dashboard extends AppCompatActivity {
     private String email, token;
     private User.UserType userType;
     private TextInputEditText inputPeriodStart, inputPeriodEnd;
+    private Animation rotateOpen, rotateClose, fromBottom, toBottom;
+    private FloatingActionButton addButton, addTimeButton, addPlaceButton;
+    private Boolean clicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +43,76 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         getPreferences();
         getUserType();
-        setPeriodButtons();
+        setPeriodInputs();
+        setViews();
     }
 
-    public void setPeriodButtons(){
+    private void setViews(){
+        setAnimationReferences();
+        addButton = findViewById(R.id.add_btn);
+        addTimeButton = findViewById(R.id.add_time_btn);
+        addPlaceButton = findViewById(R.id.add_place_btn);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onAddButtonClicked();
+            }
+        });
+
+        addTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Dashboard.this, "add time", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        addPlaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Dashboard.this, "add place", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void onAddButtonClicked(){
+        setFloatButtonsVisibility(clicked);
+        setFloatButtonsAnimations(clicked);
+        clicked = !clicked;
+    }
+
+    public void setFloatButtonsVisibility(Boolean clicked){
+        if(!clicked){
+            addTimeButton.setVisibility(View.VISIBLE);
+            addPlaceButton.setVisibility(View.VISIBLE);
+        }
+        else{
+            addTimeButton.setVisibility(View.INVISIBLE);
+            addPlaceButton.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void setFloatButtonsAnimations(Boolean clicked){
+        if(!clicked){
+            addTimeButton.startAnimation(fromBottom);
+            addPlaceButton.startAnimation(fromBottom);
+            addButton.startAnimation(rotateOpen);
+        }
+        else{
+            addTimeButton.startAnimation(toBottom);
+            addPlaceButton.startAnimation(toBottom);
+            addButton.startAnimation(rotateClose);
+        }
+    }
+
+    private void setAnimationReferences(){
+        rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
+        rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
+        toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
+    }
+
+    private void setPeriodInputs(){
         inputPeriodStart = findViewById(R.id.input_period_start);
         inputPeriodEnd = findViewById(R.id.input_period_end);
         inputPeriodStart.clearFocus();
@@ -86,7 +159,7 @@ public class Dashboard extends AppCompatActivity {
         });
     }
 
-    public void getUserType(){
+    private void getUserType(){
         ApiService.getUserService().getUser(email, token).enqueue(
                 new Callback<UserResponseBody>() {
                     @Override
@@ -111,7 +184,7 @@ public class Dashboard extends AppCompatActivity {
         );
     }
 
-    public void getPreferences(){
+    private void getPreferences(){
         SharedPreferences sharedPreferences = this.getSharedPreferences(
                 SHARED_LOGIN_PREFERENCES_KEY, Context.MODE_PRIVATE);
         String defaultValue = "";

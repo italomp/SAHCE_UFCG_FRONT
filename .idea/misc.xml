@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/ic_place.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.1685" />
         <entry key="app/src/main/res/drawable/input_field_backgroud.xml" value="0.2395" />
         <entry key="app/src/main/res/drawable/input_fields_background.xml" value="0.2395" />
