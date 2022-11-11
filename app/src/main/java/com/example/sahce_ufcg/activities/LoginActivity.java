@@ -63,26 +63,34 @@ public class LoginActivity extends AppCompatActivity {
                         new Callback<Void>() {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
-                                if(response.isSuccessful()){
-                                    String token = response.headers().get("Authorization");
-                                    savePreferences(token, email);
-                                    goToDashboard();
-                                }
-                                else{
-                                    Util.showMessage(LoginActivity.this,
-                                            "Código de estado HTTP: " + response.code());
-                                }
+                                handleResponse(response, email);
                             }
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-                                System.out.println("onFailure");
+                                Util.showMessage(LoginActivity.this, "Falha de rede.");
                                 t.printStackTrace();
                             }
                         }
                 );
             }
         });
+    }
+
+    private void handleResponse(Response<Void> response, String usernameFromUser){
+        if(response.isSuccessful()){
+            String token = response.headers().get("Authorization");
+            savePreferences(token, usernameFromUser);
+            goToDashboard();
+        }
+        else if(response.code() == 401){
+            Util.showMessage(LoginActivity.this,
+                    "Credenciais inválidas.");
+        }
+        else{
+            Util.showMessage(LoginActivity.this,
+                    "Código de estado HTTP: " + response.code() + ".");
+        }
     }
 
     public void savePreferences(String token, String email){
