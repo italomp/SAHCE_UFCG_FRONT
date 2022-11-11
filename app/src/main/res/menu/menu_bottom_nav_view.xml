@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_item_reserved_times"
+        android:icon="@drawable/ic_calendar"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/menu_item_times_settings"
+        android:icon="@drawable/ic_time"
+        tools:ignore="MenuTitle"/>
+
+    <item
+        android:id="@+id/menu_item_places"
+        android:icon="@drawable/ic_place"
+        tools:ignore="MenuTitle"
+        />
+</menu>

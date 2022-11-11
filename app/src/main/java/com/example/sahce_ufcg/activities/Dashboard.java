@@ -8,22 +8,24 @@ import static com.example.sahce_ufcg.util.Constants.USER_EMAIL_KEY;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Toast;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sahce_ufcg.R;
+import com.example.sahce_ufcg.fragments.PlacesFragment;
+import com.example.sahce_ufcg.fragments.ReservedTimesFragment;
+import com.example.sahce_ufcg.fragments.TimesSettingsFragment;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.responseBodies.UserResponseBody;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,132 +33,15 @@ import retrofit2.Response;
 
 public class Dashboard extends AppCompatActivity {
     private String email, token;
-    private User.UserType userType;
-    private TextInputEditText inputPeriodStart, inputPeriodEnd;
-    private Animation rotateOpen, rotateClose, fromBottom, toBottom;
-    private FloatingActionButton addButton, addTimeButton, addPlaceButton;
-    private Boolean clicked = false;
+    private BottomNavigationView bottomNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_non_admin);
         getPreferences();
         getUserType();
-        setPeriodInputs();
-        setViews();
-    }
-
-    private void setViews(){
-        setAnimationReferences();
-        addButton = findViewById(R.id.add_btn);
-        addTimeButton = findViewById(R.id.add_time_btn);
-        addPlaceButton = findViewById(R.id.add_place_btn);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onAddButtonClicked();
-            }
-        });
-
-        addTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Dashboard.this, "add time", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        addPlaceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Dashboard.this, "add place", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public void onAddButtonClicked(){
-        setFloatButtonsVisibility(clicked);
-        setFloatButtonsAnimations(clicked);
-        clicked = !clicked;
-    }
-
-    public void setFloatButtonsVisibility(Boolean clicked){
-        if(!clicked){
-            addTimeButton.setVisibility(View.VISIBLE);
-            addPlaceButton.setVisibility(View.VISIBLE);
-        }
-        else{
-            addTimeButton.setVisibility(View.INVISIBLE);
-            addPlaceButton.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void setFloatButtonsAnimations(Boolean clicked){
-        if(!clicked){
-            addTimeButton.startAnimation(fromBottom);
-            addPlaceButton.startAnimation(fromBottom);
-            addButton.startAnimation(rotateOpen);
-        }
-        else{
-            addTimeButton.startAnimation(toBottom);
-            addPlaceButton.startAnimation(toBottom);
-            addButton.startAnimation(rotateClose);
-        }
-    }
-
-    private void setAnimationReferences(){
-        rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
-        rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
-        fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
-        toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
-    }
-
-    private void setPeriodInputs(){
-        inputPeriodStart = findViewById(R.id.input_period_start);
-        inputPeriodEnd = findViewById(R.id.input_period_end);
-        inputPeriodStart.clearFocus();
-        inputPeriodEnd.clearFocus();
-
-        MaterialDatePicker startDatePicker = MaterialDatePicker.Builder
-                .datePicker()
-                .setTitleText("Data Inicial")
-                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
-                .build();
-
-        MaterialDatePicker endDatePicker = MaterialDatePicker.Builder
-                .datePicker()
-                .setTitleText("Data Final")
-                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
-                .build();
-
-        inputPeriodStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startDatePicker.show(getSupportFragmentManager(), "Material_Date_Picker");
-                startDatePicker.addOnPositiveButtonClickListener(
-                        new MaterialPickerOnPositiveButtonClickListener() {
-                            @Override
-                            public void onPositiveButtonClick(Object selection) {
-                                inputPeriodStart.setText(startDatePicker.getHeaderText());
-                            }
-                        });
-            }
-        });
-
-        inputPeriodEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                endDatePicker.show(getSupportFragmentManager(), "Material_Date_Picker");
-                endDatePicker.addOnPositiveButtonClickListener(
-                        new MaterialPickerOnPositiveButtonClickListener() {
-                            @Override
-                            public void onPositiveButtonClick(Object selection) {
-                                inputPeriodEnd.setText(endDatePicker.getHeaderText());
-                            }
-                        });
-            }
-        });
     }
 
     private void getUserType(){
@@ -168,7 +53,8 @@ public class Dashboard extends AppCompatActivity {
                             Response<UserResponseBody> response
                     ){
                         if(response.isSuccessful()){
-                            userType = response.body().getUserType();
+                            User.UserType userType = response.body().getUserType();
+                            setViews(userType);
                         }
                         else{
                             Util.showMessage(Dashboard.this,
@@ -190,5 +76,49 @@ public class Dashboard extends AppCompatActivity {
         String defaultValue = "";
         email = sharedPreferences.getString(USER_EMAIL_KEY, defaultValue);
         token = sharedPreferences.getString(TOKEN_KEY, defaultValue);
+    }
+
+    private void setBottomNavigationView(){
+        bottomNavigationView = findViewById(R.id.bottom_nav_view);
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setChecked(true);
+                if(item.getItemId() == R.id.menu_item_reserved_times)
+                    replaceFragment(new ReservedTimesFragment());
+                else if (item.getItemId() == R.id.menu_item_times_settings)
+                    replaceFragment(new TimesSettingsFragment());
+                else if(item.getItemId() == R.id.menu_item_places)
+                    replaceFragment(new PlacesFragment());
+                return false;
+            }
+        });
+
+    }
+
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void setViews(User.UserType userType){
+        if (userType == User.UserType.ADMIN) {
+            setAdminViews();
+        } else {
+            setNonAdminViews();
+        }
+    }
+
+    public void setAdminViews(){
+        replaceFragment(new ReservedTimesFragment());
+        setContentView(R.layout.activity_dashboard_admin);
+        setBottomNavigationView();
+    }
+
+    public void setNonAdminViews(){
+        replaceFragment(new ReservedTimesFragment());
+        // The content view is already defined in onCreate()
     }
 }

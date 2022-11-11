@@ -17,6 +17,8 @@
     <string name="header_user_register">Cadastrar Usuário</string>
     <string name="header_login">Login</string>
     <string name="header_check_times">Consultar Horários</string>
+    <string name="header_place_register">Cadastrar Espaços</string>
+    <string name="header_appointment_times_register">Cadastrar Horários</string>
 
     <!-- Links -->
     <string name="link_signup">Registre-se</string>
@@ -24,4 +26,6 @@
     <!-- Labels -->
     <string name="label_start_period">Data Inicial</string>
     <string name="label_end_period">Data Final</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
