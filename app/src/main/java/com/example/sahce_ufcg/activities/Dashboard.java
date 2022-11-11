@@ -20,6 +20,7 @@ import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.fragments.PlacesFragment;
 import com.example.sahce_ufcg.fragments.AppointmentsFragment;
 import com.example.sahce_ufcg.fragments.TimesFragment;
+import com.example.sahce_ufcg.fragments.UsersFragment;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.responseBodies.UserResponseBody;
 import com.example.sahce_ufcg.services.ApiService;
@@ -84,16 +85,17 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 item.setChecked(true);
-                if(item.getItemId() == R.id.menu_item_reserved_times)
+                if(item.getItemId() == R.id.menu_item_appointments)
                     replaceFragment(new AppointmentsFragment());
-                else if (item.getItemId() == R.id.menu_item_times_settings)
+                else if (item.getItemId() == R.id.menu_item_users)
+                    replaceFragment(new UsersFragment());
+                else if (item.getItemId() == R.id.menu_item_times)
                     replaceFragment(new TimesFragment());
-                else if(item.getItemId() == R.id.menu_item_places_settings)
+                else if(item.getItemId() == R.id.menu_item_places)
                     replaceFragment(new PlacesFragment());
                 return false;
             }
         });
-
     }
 
     public void replaceFragment(Fragment fragment){

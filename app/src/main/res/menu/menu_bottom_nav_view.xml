@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/menu_item_reserved_times"
+        android:id="@+id/menu_item_appointments"
         android:icon="@drawable/ic_home"
         tools:ignore="MenuTitle" />
 
     <item
-        android:id="@+id/menu_item_users_registration"
+        android:id="@+id/menu_item_users"
         android:icon="@drawable/ic_users"
         tools:ignore="MenuTitle"/>
 
     <item
-        android:id="@+id/menu_item_times_settings"
+        android:id="@+id/menu_item_times"
         android:icon="@drawable/ic_time"
         tools:ignore="MenuTitle"/>
 
     <item
-        android:id="@+id/menu_item_places_settings"
+        android:id="@+id/menu_item_places"
         android:icon="@drawable/ic_place"
         tools:ignore="MenuTitle"/>
 </menu>
