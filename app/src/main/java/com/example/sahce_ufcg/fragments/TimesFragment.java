@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sahce_ufcg.R;
 
-public class TimesSettingsFragment extends Fragment {
+public class TimesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_times_settings, container, false);
+        return inflater.inflate(R.layout.fragment_times, container, false);
     }
 }

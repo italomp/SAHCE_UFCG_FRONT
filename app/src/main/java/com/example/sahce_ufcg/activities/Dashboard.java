@@ -18,8 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.fragments.PlacesFragment;
-import com.example.sahce_ufcg.fragments.ReservedTimesFragment;
-import com.example.sahce_ufcg.fragments.TimesSettingsFragment;
+import com.example.sahce_ufcg.fragments.AppointmentsFragment;
+import com.example.sahce_ufcg.fragments.TimesFragment;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.responseBodies.UserResponseBody;
 import com.example.sahce_ufcg.services.ApiService;
@@ -85,10 +85,10 @@ public class Dashboard extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 item.setChecked(true);
                 if(item.getItemId() == R.id.menu_item_reserved_times)
-                    replaceFragment(new ReservedTimesFragment());
+                    replaceFragment(new AppointmentsFragment());
                 else if (item.getItemId() == R.id.menu_item_times_settings)
-                    replaceFragment(new TimesSettingsFragment());
-                else if(item.getItemId() == R.id.menu_item_places)
+                    replaceFragment(new TimesFragment());
+                else if(item.getItemId() == R.id.menu_item_places_settings)
                     replaceFragment(new PlacesFragment());
                 return false;
             }
@@ -112,13 +112,13 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void setAdminViews(){
-        replaceFragment(new ReservedTimesFragment());
+        replaceFragment(new AppointmentsFragment());
         setContentView(R.layout.activity_dashboard_admin);
         setBottomNavigationView();
     }
 
     public void setNonAdminViews(){
-        replaceFragment(new ReservedTimesFragment());
+        replaceFragment(new AppointmentsFragment());
         // The content view is already defined in onCreate()
     }
 }

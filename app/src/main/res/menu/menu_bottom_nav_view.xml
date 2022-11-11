@@ -5,8 +5,13 @@
 
     <item
         android:id="@+id/menu_item_reserved_times"
-        android:icon="@drawable/ic_calendar"
+        android:icon="@drawable/ic_home"
         tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/menu_item_users_registration"
+        android:icon="@drawable/ic_users"
+        tools:ignore="MenuTitle"/>
 
     <item
         android:id="@+id/menu_item_times_settings"
@@ -14,8 +19,7 @@
         tools:ignore="MenuTitle"/>
 
     <item
-        android:id="@+id/menu_item_places"
+        android:id="@+id/menu_item_places_settings"
         android:icon="@drawable/ic_place"
-        tools:ignore="MenuTitle"
-        />
+        tools:ignore="MenuTitle"/>
 </menu>
