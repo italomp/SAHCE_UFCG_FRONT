@@ -21,4 +21,13 @@
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:textColor">@color/header_text</item>
     </style>
+
+    <style name="Theme.SAHCE_UFCG.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SAHCE_UFCG.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SAHCE_UFCG.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

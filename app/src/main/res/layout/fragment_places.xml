@@ -8,16 +8,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottom_nav_height">
 
         <TextView
             android:id="@+id/header_place_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_place_register"
+            android:text="@string/header_place_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/headers_style"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/header_place_register"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_place_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:tint="@color/background_buttons"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

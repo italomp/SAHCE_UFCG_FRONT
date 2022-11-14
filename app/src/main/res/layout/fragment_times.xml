@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bottom_nav_height">
 
         <TextView
             android:id="@+id/header_appointment_times_register"
@@ -18,8 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/headers_style"/>
+            style="@style/headers_style"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </FrameLayout>

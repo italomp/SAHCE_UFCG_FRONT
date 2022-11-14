@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/header_place_register"
+        style="@style/headers_style"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="84dp"
+        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_place_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/field_name"
+            android:inputType="text"
+            android:background="@drawable/input_fields_background"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="start">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuários autorizados"
+            />
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkbox_internal_community"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Comunidade interna" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkbox_external_community"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Comunidade externa" />-->
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkbox_admins"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Administrador" />-->
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <RadioButton
+                android:id="@+id/radio_internal_community"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comunidade Interna"/>
+            <RadioButton
+                android:id="@+id/radio_external_community"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comunidade Exerna"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_send"
+        android:backgroundTint="@color/background_buttons"/>
+</LinearLayout>

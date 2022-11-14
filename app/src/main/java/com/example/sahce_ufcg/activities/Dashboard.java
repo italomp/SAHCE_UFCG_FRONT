@@ -1,12 +1,6 @@
 package com.example.sahce_ufcg.activities;
 
 
-import static com.example.sahce_ufcg.util.Constants.SHARED_LOGIN_PREFERENCES_KEY;
-import static com.example.sahce_ufcg.util.Constants.TOKEN_KEY;
-import static com.example.sahce_ufcg.util.Constants.USER_EMAIL_KEY;
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -17,8 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sahce_ufcg.R;
-import com.example.sahce_ufcg.fragments.PlacesFragment;
 import com.example.sahce_ufcg.fragments.AppointmentsFragment;
+import com.example.sahce_ufcg.fragments.PlacesFragment;
 import com.example.sahce_ufcg.fragments.TimesFragment;
 import com.example.sahce_ufcg.fragments.UsersFragment;
 import com.example.sahce_ufcg.models.User;
@@ -72,11 +66,8 @@ public class Dashboard extends AppCompatActivity {
     }
 
     private void getPreferences(){
-        SharedPreferences sharedPreferences = this.getSharedPreferences(
-                SHARED_LOGIN_PREFERENCES_KEY, Context.MODE_PRIVATE);
-        String defaultValue = "";
-        email = sharedPreferences.getString(USER_EMAIL_KEY, defaultValue);
-        token = sharedPreferences.getString(TOKEN_KEY, defaultValue);
+        email = Util.getEmailPreferences(this);
+        token = Util.getTokenPreferences(this);
     }
 
     private void setBottomNavigationView(){
