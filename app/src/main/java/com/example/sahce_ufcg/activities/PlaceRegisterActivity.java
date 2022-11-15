@@ -52,16 +52,22 @@ public class PlaceRegisterActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<Void> call, Response<Void> response) {
                                 if(response.isSuccessful()){
-                                    System.out.println("response is successful");
+                                    Util.showMessage(
+                                            getApplicationContext(),
+                                            "Local cadastrado.");
                                 }
                                 else{
-                                    System.out.println("status code: " + response.code());
+                                    Util.showMessage(
+                                            PlaceRegisterActivity.this,
+                                            "status code: " + response.code());
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<Void> call, Throwable t) {
-                                System.out.println("onFailure");
+                                Util.showMessage(
+                                        PlaceRegisterActivity.this,
+                                        "Falha de rede");
                                 t.printStackTrace();
                             }
                         }
