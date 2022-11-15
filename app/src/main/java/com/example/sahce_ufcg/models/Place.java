@@ -10,4 +10,20 @@ public class Place {
         this.name = name;
         this.usersThatCanUseThePlace = usersThatCanUseThePlace;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<User.UserType> getUsersThatCanUseThePlace() {
+        return usersThatCanUseThePlace;
+    }
+
+    public void setUsersThatCanUseThePlace(List<User.UserType> usersThatCanUseThePlace) {
+        this.usersThatCanUseThePlace = usersThatCanUseThePlace;
+    }
 }

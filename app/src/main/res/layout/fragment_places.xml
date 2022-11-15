@@ -22,10 +22,12 @@
             style="@style/headers_style"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/place_listing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/header_place_register"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingBottom="45dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_place_button"
