@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.TimesFragment">
+    tools:context=".fragments.ScheduleFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,11 +15,25 @@
             android:id="@+id/header_appointment_times_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_appointment_times_register"
+            android:text="@string/header_schedules"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/headers_style"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_schedule_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:tint="@color/background_buttons"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="@color/white"
+            app:borderWidth="0dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

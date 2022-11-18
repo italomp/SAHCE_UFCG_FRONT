@@ -12,14 +12,14 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class AppointmentsFragment extends Fragment {
+public class SchedulingFragment extends Fragment {
     private TextInputEditText inputPeriodStart, inputPeriodEnd;
     private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_appointments, container, false);
+        view = inflater.inflate(R.layout.fragment_scheduling, container, false);
         setPeriodInputs();
         return view;
     }

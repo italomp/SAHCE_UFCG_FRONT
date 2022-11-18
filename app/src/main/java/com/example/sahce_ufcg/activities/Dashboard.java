@@ -13,9 +13,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sahce_ufcg.R;
-import com.example.sahce_ufcg.fragments.AppointmentsFragment;
+import com.example.sahce_ufcg.fragments.SchedulingFragment;
 import com.example.sahce_ufcg.fragments.PlacesFragment;
-import com.example.sahce_ufcg.fragments.TimesFragment;
+import com.example.sahce_ufcg.fragments.ScheduleFragment;
 import com.example.sahce_ufcg.fragments.UsersFragment;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.responseBodies.UserResponseBody;
@@ -80,11 +80,11 @@ public class Dashboard extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 item.setChecked(true);
                 if(item.getItemId() == R.id.menu_item_appointments)
-                    replaceFragment(new AppointmentsFragment());
+                    replaceFragment(new SchedulingFragment());
                 else if (item.getItemId() == R.id.menu_item_users)
                     replaceFragment(new UsersFragment());
                 else if (item.getItemId() == R.id.menu_item_times)
-                    replaceFragment(new TimesFragment());
+                    replaceFragment(new ScheduleFragment());
                 else if(item.getItemId() == R.id.menu_item_places)
                     replaceFragment(new PlacesFragment());
                 return false;
@@ -108,13 +108,13 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void setAdminViews(){
-        replaceFragment(new AppointmentsFragment());
+        replaceFragment(new SchedulingFragment());
         setContentView(R.layout.activity_dashboard_admin);
         setBottomNavigationView();
     }
 
     public void setNonAdminViews(){
-        replaceFragment(new AppointmentsFragment());
+        replaceFragment(new SchedulingFragment());
         // The content view is already defined in onCreate()
     }
 }

@@ -19,11 +19,13 @@
         <entry key="app/src/main/res/layout/activity_place.xml" value="0.27943840579710144" />
         <entry key="app/src/main/res/layout/activity_place_register.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/activity_reserved_times.xml" value="0.2817028985507246" />
+        <entry key="app/src/main/res/layout/activity_schedule_register.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/activity_user_register.xml" value="0.27943840579710144" />
         <entry key="app/src/main/res/layout/fragment_appointments.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_places.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_places_register.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_reserved_times.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_schedules.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_times.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_times_settings.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_users.xml" value="0.35625" />

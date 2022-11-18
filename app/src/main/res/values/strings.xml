@@ -19,7 +19,8 @@
     <string name="header_login">Login</string>
     <string name="header_check_times">Consultar Horários</string>
     <string name="header_place_fragment">Espaços</string>
-    <string name="header_appointment_times_register">Cadastrar Horários</string>
+    <string name="header_schedules">Horários</string>
+    <string name="header_schedule_register">Cadastrar Horário</string>
 
     <!-- Links -->
     <string name="link_signup">Registre-se</string>
