@@ -1,10 +1,12 @@
 package com.example.sahce_ufcg.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
+import android.widget.CheckBox;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sahce_ufcg.R;
@@ -21,9 +23,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class PlaceRegisterActivity extends AppCompatActivity {
     TextInputEditText placeNameInput;
-    RadioButton internalUser, externalUser;
+    CheckBox internalUser, externalUser;
     Button sendButton;
     String email, token;
 
@@ -37,8 +40,8 @@ public class PlaceRegisterActivity extends AppCompatActivity {
 
     public void setViews(){
         placeNameInput = findViewById(R.id.name_place_field);
-        internalUser = findViewById(R.id.radio_internal_community);
-        externalUser = findViewById(R.id.radio_external_community);
+        internalUser = findViewById(R.id.internal_community_checkbox_place_register);
+        externalUser = findViewById(R.id.external_community_checkbox_place_register);
         sendButton = findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +58,7 @@ public class PlaceRegisterActivity extends AppCompatActivity {
                                     Util.showMessage(
                                             getApplicationContext(),
                                             "Local cadastrado.");
+                                    finish();
                                 }
                                 else{
                                     Util.showMessage(

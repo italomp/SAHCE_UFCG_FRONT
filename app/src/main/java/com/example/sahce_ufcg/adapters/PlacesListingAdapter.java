@@ -40,17 +40,13 @@ public class PlacesListingAdapter extends RecyclerView.Adapter<RecyclerView.View
         CheckBox externalCommunityView = ((PlaceViewHolder) holder).getExternalCommunity();
         CheckBox internalCommunityView = ((PlaceViewHolder) holder).getInternalCommunity();
         Place currPlace = placesList.get(position);
-        System.out.println(currPlace.getUsersThatCanUseThePlace().size());
+        System.out.println(currPlace.getAuthorizedUsers().size());
 
         cardTitleView.setText(currPlace.getName());
-        if (currPlace.getUsersThatCanUseThePlace().contains(User.UserType.INTERNAL_USER)){
-            System.out.println("currPlace.getUsersThatCanUseThePlace().contains(User.UserType.INTERNAL_USER)");
-//            internalCommunityView.isChecked();
+        if (currPlace.getAuthorizedUsers().contains(User.UserType.INTERNAL_USER)){
             internalCommunityView.setChecked(true);
         }
-        if (currPlace.getUsersThatCanUseThePlace().contains(User.UserType.EXTERNAL_USER)){
-            System.out.println("currPlace.getUsersThatCanUseThePlace().contains(User.UserType.EXTERNAL_USER)");
-//            externalCommunityView.isChecked();
+        if (currPlace.getAuthorizedUsers().contains(User.UserType.EXTERNAL_USER)){
             externalCommunityView.setChecked(true);
         }
     }
@@ -72,8 +68,8 @@ public class PlacesListingAdapter extends RecyclerView.Adapter<RecyclerView.View
         public PlaceViewHolder(@NonNull View itemView) {
             super(itemView);
             cardTitle = itemView.findViewById(R.id.card_title);
-            externalCommunity = itemView.findViewById(R.id.checkbox_external_community);
-            internalCommunity = itemView.findViewById(R.id.checkbox_internal_community);
+            externalCommunity = itemView.findViewById(R.id.external_community_checkbox_place_card);
+            internalCommunity = itemView.findViewById(R.id.internal_community_checkbox_place_card);
         }
 
         public TextView getCardTitle() {

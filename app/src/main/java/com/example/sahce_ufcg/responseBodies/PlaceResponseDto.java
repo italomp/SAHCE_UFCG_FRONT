@@ -1,12 +1,17 @@
-package com.example.sahce_ufcg.models;
+package com.example.sahce_ufcg.responseBodies;
+
+import com.example.sahce_ufcg.models.User;
+import com.squareup.moshi.Json;
 
 import java.util.List;
 
-public class Place implements Comparable{
+public class PlaceResponseDto {
+    @Json(name = "name")
     private String name;
+    @Json(name = "authorizedUsers")
     private List<User.UserType> authorizedUsers;
 
-    public Place(String name, List<User.UserType> authorizedUsers){
+    public PlaceResponseDto(String name, List<User.UserType> authorizedUsers){
         this.name = name;
         this.authorizedUsers = authorizedUsers;
     }
@@ -25,11 +30,5 @@ public class Place implements Comparable{
 
     public void setAuthorizedUsers(List<User.UserType> authorizedUsers) {
         this.authorizedUsers = authorizedUsers;
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        Place otherPlace = (Place) o;
-        return name.toLowerCase().compareTo(otherPlace.getName().toLowerCase());
     }
 }

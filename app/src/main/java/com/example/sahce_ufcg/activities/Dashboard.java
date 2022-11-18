@@ -1,10 +1,12 @@
 package com.example.sahce_ufcg.activities;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -26,6 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class Dashboard extends AppCompatActivity {
     private String email, token;
     private BottomNavigationView bottomNavigationView;

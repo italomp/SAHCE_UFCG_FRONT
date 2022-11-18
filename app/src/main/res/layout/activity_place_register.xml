@@ -42,38 +42,18 @@
             android:text="Usuários autorizados"
             />
 
-<!--        <CheckBox-->
-<!--            android:id="@+id/checkbox_internal_community"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Comunidade interna" />-->
 
-<!--        <CheckBox-->
-<!--            android:id="@+id/checkbox_external_community"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Comunidade externa" />-->
+        <CheckBox
+            android:id="@+id/internal_community_checkbox_place_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidade Interna"/>
+        <CheckBox
+            android:id="@+id/external_community_checkbox_place_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comunidade Exerna"/>
 
-<!--        <CheckBox-->
-<!--            android:id="@+id/checkbox_admins"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Administrador" />-->
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-            <RadioButton
-                android:id="@+id/radio_internal_community"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comunidade Interna"/>
-            <RadioButton
-                android:id="@+id/radio_external_community"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comunidade Exerna"/>
-        </RadioGroup>
     </LinearLayout>
 
     <Button
