@@ -15,7 +15,7 @@ import com.example.sahce_ufcg.models.User;
 
 import java.util.List;
 
-public class PlacesListingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class PlacesListingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Place> placesList;
 
     public PlacesListingAdapter(List<Place> placesList){

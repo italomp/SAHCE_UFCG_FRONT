@@ -86,6 +86,7 @@ public class PlacesFragment extends Fragment {
                         Util.showMessage(
                                 view.getContext(),
                                 "Falha de Comunicação");
+                        t.printStackTrace();
                     }
                 }
         );
