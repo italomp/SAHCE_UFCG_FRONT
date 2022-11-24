@@ -30,13 +30,13 @@ public class SchedulingFragment extends Fragment {
         inputPeriodStart.clearFocus();
         inputPeriodEnd.clearFocus();
 
-        MaterialDatePicker startDatePicker = MaterialDatePicker.Builder
+        MaterialDatePicker<Long> startDatePicker = MaterialDatePicker.Builder
                 .datePicker()
                 .setTitleText("Data Inicial")
                 .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
                 .build();
 
-        MaterialDatePicker endDatePicker = MaterialDatePicker.Builder
+        MaterialDatePicker<Long> endDatePicker = MaterialDatePicker.Builder
                 .datePicker()
                 .setTitleText("Data Final")
                 .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())

@@ -21,6 +21,9 @@ import com.example.sahce_ufcg.responseBodies.PlaceResponseDto;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +38,8 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     Spinner spinnerDayOfWeek;
     ImageButton addDayOfWeekButton;
     LinearLayout selectedDaysLayout;
+    private TextInputEditText inputPeriodStart, inputPeriodEnd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         setSpinnerPlace();
         setSpinnerDayOfWeek();
         setAddDayOfWeekButton();
+        setPeriodInputs();
     }
 
     public void getToken(){
@@ -113,6 +119,53 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 String selectDay = spinnerDayOfWeek.getSelectedItem().toString();
                 dayOutput.setText(selectDay);
                 selectedDaysLayout.addView(dayCard);
+            }
+        });
+    }
+
+    private void setPeriodInputs(){
+        inputPeriodStart = findViewById(R.id.input_period_start);
+        inputPeriodEnd = findViewById(R.id.input_period_end);
+        inputPeriodStart.clearFocus();
+        inputPeriodEnd.clearFocus();
+
+        MaterialDatePicker<Long> startDatePicker = MaterialDatePicker.Builder
+                .datePicker()
+                .setTitleText("Data Inicial")
+                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
+                .build();
+
+        MaterialDatePicker<Long> endDatePicker = MaterialDatePicker.Builder
+                .datePicker()
+                .setTitleText("Data Final")
+                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
+                .build();
+
+        inputPeriodStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startDatePicker.show(getSupportFragmentManager(), "Material_Date_Picker");
+                startDatePicker.addOnPositiveButtonClickListener(
+                        new MaterialPickerOnPositiveButtonClickListener() {
+                            @Override
+                            public void onPositiveButtonClick(Object selection) {
+                                inputPeriodStart.setText(startDatePicker.getHeaderText());
+                            }
+                        });
+            }
+        });
+
+        inputPeriodEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                endDatePicker.show(getSupportFragmentManager(), "Material_Date_Picker");
+                endDatePicker.addOnPositiveButtonClickListener(
+                        new MaterialPickerOnPositiveButtonClickListener() {
+                            @Override
+                            public void onPositiveButtonClick(Object selection) {
+                                inputPeriodEnd.setText(endDatePicker.getHeaderText());
+                            }
+                        });
             }
         });
     }
