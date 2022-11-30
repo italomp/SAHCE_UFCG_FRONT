@@ -56,7 +56,7 @@
             android:id="@+id/days_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dias do horario"
+            android:text="Dias da Semana"
             style="@style/header_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -89,6 +89,14 @@
             android:backgroundTint="@color/background_buttons"
             app:layout_constraintStart_toEndOf="@id/spinner_day_of_week"
             app:layout_constraintTop_toBottomOf="@id/selected_days_layout" />
+
+        <LinearLayout
+            android:id="@+id/time_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_day_of_week_button"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,46 +104,56 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_of_week_layout">
+        app:layout_constraintTop_toBottomOf="@id/days_of_week_layout"
+        >
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_period_start_layout"
+        <TextView
+            android:id="@+id/period_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="130dp"
+            android:text="@string/period_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/input_period_end_layout"
-            android:layout_marginStart="8dp"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_period_start"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Data Inicial"
-                android:focusable="false"
-                android:background="@drawable/input_fields_background"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintBottom_toTopOf="@id/input_period_start"
+            style="@style/header_2"/>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_period_end_layout"
+        <EditText
+            android:id="@+id/input_period_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="130dp"
-            app:layout_constraintStart_toEndOf="@id/input_period_start_layout"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="8dp"
-            >
+            android:hint="@string/initial_date_or_time_input"
+            android:inputType="date"
+            android:focusable="false"
+            android:background="@drawable/input_fields_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/period_label"
+            app:layout_constraintEnd_toStartOf="@id/input_period_end"
+            android:layout_marginStart="8dp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_period_end"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Data Final"
-                android:focusable="false"
-                android:background="@drawable/input_fields_background"/>
-        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <EditText
+            android:id="@+id/input_period_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/final_date_or_time_input"
+            android:inputType="date"
+            android:focusable="false"
+            android:background="@drawable/input_fields_background"
+            app:layout_constraintStart_toEndOf="@id/input_period_start"
+            app:layout_constraintTop_toBottomOf="@id/period_label"
+            android:layout_marginStart="8dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/period_layout"
+        android:text="Cadastrar"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

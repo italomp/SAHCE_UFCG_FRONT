@@ -1,41 +1,36 @@
 package com.example.sahce_ufcg.models;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
+import java.util.Map;
 
-public class Schedule {
+public class Schedule implements Serializable{
     private LocalDate initialDate;
     private LocalDate finalDate;
-    private LocalTime initialTime;
-    private LocalTime finalTime;
-    private String ownerEmail;
+    private Map<DayOfWeek, TimesByDay> timesByDayMap;
     private String placeName;
-    private List<DayOfWeek> daysOfWeek;
+    private String ownerEmail;
 
-    public Schedule(LocalDate initialDate, LocalDate finalDate, LocalTime initialTime,
-                    LocalTime finalTime, String placeName, List<DayOfWeek> daysOfWeek) {
+    public Schedule(LocalDate initialDate, LocalDate finalDate,
+                    Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName, String ownerEmail) {
         this.initialDate = initialDate;
         this.finalDate = finalDate;
-        this.initialTime = initialTime;
-        this.finalTime = finalTime;
-        this.ownerEmail = null;
+        this.timesByDayMap = timesByDayMap;
         this.placeName = placeName;
-        this.daysOfWeek = daysOfWeek;
-    }
-
-    public Schedule(LocalDate initialDate, LocalDate finalDate, LocalTime initialTime,
-                    LocalTime finalTime, String ownerEmail, String placeName,
-                    List<DayOfWeek> daysOfWeek) {
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-        this.initialTime = initialTime;
-        this.finalTime = finalTime;
         this.ownerEmail = ownerEmail;
-        this.placeName = placeName;
-        this.daysOfWeek = daysOfWeek;
     }
+
+    public Schedule(LocalDate initialDate, LocalDate finalDate,
+                    Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName) {
+        this.initialDate = initialDate;
+        this.finalDate = finalDate;
+        this.timesByDayMap = timesByDayMap;
+        this.placeName = placeName;
+        this.ownerEmail = null;
+    }
+
+    public Schedule(){}
 
     public LocalDate getInitialDate() {
         return initialDate;
@@ -51,22 +46,6 @@ public class Schedule {
 
     public void setFinalDate(LocalDate finalDate) {
         this.finalDate = finalDate;
-    }
-
-    public LocalTime getInitialTime() {
-        return initialTime;
-    }
-
-    public void setInitialTime(LocalTime initialTime) {
-        this.initialTime = initialTime;
-    }
-
-    public LocalTime getFinalTime() {
-        return finalTime;
-    }
-
-    public void setFinalTime(LocalTime finalTime) {
-        this.finalTime = finalTime;
     }
 
     public String getOwnerEmail() {
@@ -85,11 +64,11 @@ public class Schedule {
         this.placeName = placeName;
     }
 
-    public List<DayOfWeek> getDaysOfWeek() {
-        return daysOfWeek;
+    public Map<DayOfWeek, TimesByDay> getTimesByDayMap() {
+        return timesByDayMap;
     }
 
-    public void setDaysOfWeek(List<DayOfWeek> daysOfWeek) {
-        this.daysOfWeek = daysOfWeek;
+    public void setTimesByDayMap(Map<DayOfWeek, TimesByDay> timesByDayMap) {
+        this.timesByDayMap = timesByDayMap;
     }
 }

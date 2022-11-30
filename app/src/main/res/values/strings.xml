@@ -48,7 +48,15 @@
         Selector de dia da semana, usado para cadastrar um horário
     </string>
 
+    <!-- Labels -->
     <string name="spinner_place_label">Espaço</string>
+    <string name="period_label">Datas</string>
+    <string name="times_first_day_label">Horários do 1º Dia</string>
+    <string name="times_second_day_label">Horários do 2º Dia</string>
+
+    <!-- Hints -->
+    <string name="initial_date_or_time_input">Inicial</string>
+    <string name="final_date_or_time_input">Final</string>
 
     <string-array name="days_of_week">
         <item>SEGUNDA</item>
