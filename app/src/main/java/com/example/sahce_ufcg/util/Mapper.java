@@ -5,7 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import com.example.sahce_ufcg.models.Place;
-import com.example.sahce_ufcg.responseBodies.PlaceResponseDto;
+import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 
 import java.util.ArrayList;
 import java.util.List;

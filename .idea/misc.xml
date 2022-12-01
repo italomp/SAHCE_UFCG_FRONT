@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_places.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_places_register.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_reserved_times.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_schedules.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_scheduling.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_times.xml" value="0.2817028985507246" />

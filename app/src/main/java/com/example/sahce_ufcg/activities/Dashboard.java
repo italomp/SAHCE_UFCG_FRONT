@@ -18,7 +18,7 @@ import com.example.sahce_ufcg.fragments.PlacesFragment;
 import com.example.sahce_ufcg.fragments.ScheduleFragment;
 import com.example.sahce_ufcg.fragments.UsersFragment;
 import com.example.sahce_ufcg.models.User;
-import com.example.sahce_ufcg.responseBodies.UserResponseBody;
+import com.example.sahce_ufcg.dtos.UserResponseBody;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

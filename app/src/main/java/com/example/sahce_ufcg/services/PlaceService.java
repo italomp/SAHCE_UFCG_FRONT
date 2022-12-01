@@ -1,7 +1,7 @@
 package com.example.sahce_ufcg.services;
 
 import com.example.sahce_ufcg.models.Place;
-import com.example.sahce_ufcg.responseBodies.PlaceResponseDto;
+import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 
 import java.util.List;
 

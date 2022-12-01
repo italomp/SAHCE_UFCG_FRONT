@@ -23,7 +23,7 @@ import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Place;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
-import com.example.sahce_ufcg.responseBodies.PlaceResponseDto;
+import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;

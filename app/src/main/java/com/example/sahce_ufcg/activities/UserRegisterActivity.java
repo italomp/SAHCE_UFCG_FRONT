@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.User;
-import com.example.sahce_ufcg.responseBodies.UserResponseBody;
+import com.example.sahce_ufcg.dtos.UserResponseBody;
 import com.example.sahce_ufcg.services.ApiService;
 import com.google.android.material.textfield.TextInputEditText;
 

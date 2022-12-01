@@ -1,4 +1,4 @@
-package com.example.sahce_ufcg.responseBodies;
+package com.example.sahce_ufcg.dtos;
 
 import com.example.sahce_ufcg.models.User;
 import com.squareup.moshi.Json;

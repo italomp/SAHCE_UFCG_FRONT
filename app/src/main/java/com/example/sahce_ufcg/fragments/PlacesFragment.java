@@ -17,7 +17,7 @@ import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.PlaceRegisterActivity;
 import com.example.sahce_ufcg.adapters.PlacesListingAdapter;
 import com.example.sahce_ufcg.models.Place;
-import com.example.sahce_ufcg.responseBodies.PlaceResponseDto;
+import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;

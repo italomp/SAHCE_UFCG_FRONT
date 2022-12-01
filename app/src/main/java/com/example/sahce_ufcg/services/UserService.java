@@ -1,7 +1,7 @@
 package com.example.sahce_ufcg.services;
 
 import com.example.sahce_ufcg.models.User;
-import com.example.sahce_ufcg.responseBodies.UserResponseBody;
+import com.example.sahce_ufcg.dtos.UserResponseBody;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
