@@ -2,6 +2,7 @@ package com.example.sahce_ufcg.activities;
 
 import static android.text.format.DateFormat.is24HourFormat;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,10 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.sahce_ufcg.R;
-import com.example.sahce_ufcg.models.Place;
-import com.example.sahce_ufcg.models.Schedule;
-import com.example.sahce_ufcg.models.TimesByDay;
 import com.example.sahce_ufcg.dtos.PlaceResponseDto;
+import com.example.sahce_ufcg.dtos.schedule.ScheduleRequestDto;
+import com.example.sahce_ufcg.models.Place;
+import com.example.sahce_ufcg.models.TimesByDay;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
@@ -86,7 +87,6 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         spinnerPlace = findViewById(R.id.spinner_place);
         ApiService.getPlaceService().getAll(token).enqueue(
                 new Callback<List<PlaceResponseDto>>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
                     public void onResponse(
                             Call<List<PlaceResponseDto>> call,
@@ -165,6 +165,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         System.out.println("storageSelectedDay and stack.size is " + daysList.size());
     }
 
+    @SuppressLint("SetTextI18n")
     public void addTimeInputCard(){
         CardView inputTimeCard = (CardView) LayoutInflater
                 .from(getApplicationContext())
@@ -186,7 +187,6 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         inputPeriodEnd = findViewById(R.id.input_period_end);
         setInputDate(inputPeriodStart, "Inicial");
         setInputDate(inputPeriodEnd, "Final");
-
     }
 
     public void setInputDate(EditText inputDate, String pickerFlag){
@@ -295,7 +295,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 String initialDate = inputPeriodStart.getText().toString();
                 String finalDate = inputPeriodEnd.getText().toString();
 
-                sendRegisterRequest(new Schedule(
+                sendRegisterRequest(new ScheduleRequestDto(
                     formatInputDateToLocalDate(initialDate),
                     formatInputDateToLocalDate(finalDate),
                     timesByDayMap,
@@ -305,8 +305,8 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void sendRegisterRequest(Schedule newSchedule){
-        ApiService.getScheduleService().save(newSchedule, token).enqueue(
+    public void sendRegisterRequest(ScheduleRequestDto scheduleRequestDto){
+        ApiService.getScheduleService().save(scheduleRequestDto, token).enqueue(
                 new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {

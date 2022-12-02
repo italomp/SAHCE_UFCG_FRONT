@@ -1,7 +1,7 @@
 package com.example.sahce_ufcg.services;
 
-import com.example.sahce_ufcg.dtos.ScheduleResponseDto;
-import com.example.sahce_ufcg.models.Schedule;
+import com.example.sahce_ufcg.dtos.schedule.ScheduleRequestDto;
+import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import retrofit2.http.Query;
 
 public interface ScheduleService {
     @POST("/v1/admin/schedules")
-    Call<Void> save(@Body Schedule schedule, @Header("Authorization") String token);
+    Call<Void> save(@Body ScheduleRequestDto scheduleRequestDto, @Header("Authorization") String token);
 
     @GET("/v1/admin/schedules")
     Call<List<ScheduleResponseDto>> getAll(@Query("placeName") String placeName, @Header("Authorization") String token);

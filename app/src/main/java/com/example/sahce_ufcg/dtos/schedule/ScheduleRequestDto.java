@@ -1,35 +1,37 @@
-package com.example.sahce_ufcg.models;
+package com.example.sahce_ufcg.dtos.schedule;
 
-import java.io.Serializable;
+import com.example.sahce_ufcg.models.TimesByDay;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Map;
 
-public class Schedule implements Serializable{
+public class ScheduleRequestDto {
     private LocalDate initialDate;
     private LocalDate finalDate;
-    private List<TimesByDay> timesByDayLit;
+    private Map<DayOfWeek, TimesByDay> timesByDayMap;
     private String placeName;
     private String ownerEmail;
 
-    public Schedule(LocalDate initialDate, LocalDate finalDate,
-                    List<TimesByDay> timesByDayLit, String placeName, String ownerEmail) {
+    public ScheduleRequestDto(LocalDate initialDate, LocalDate finalDate,
+                    Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName, String ownerEmail) {
         this.initialDate = initialDate;
         this.finalDate = finalDate;
-        this.timesByDayLit = timesByDayLit;
+        this.timesByDayMap = timesByDayMap;
         this.placeName = placeName;
         this.ownerEmail = ownerEmail;
     }
 
-    public Schedule(LocalDate initialDate, LocalDate finalDate,
-                    List<TimesByDay> timesByDayLit, String placeName) {
+    public ScheduleRequestDto(LocalDate initialDate, LocalDate finalDate,
+                    Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName) {
         this.initialDate = initialDate;
         this.finalDate = finalDate;
-        this.timesByDayLit = timesByDayLit;
+        this.timesByDayMap = timesByDayMap;
         this.placeName = placeName;
         this.ownerEmail = null;
     }
 
-    public Schedule(){}
+    public ScheduleRequestDto(){}
 
     public LocalDate getInitialDate() {
         return initialDate;
@@ -63,11 +65,11 @@ public class Schedule implements Serializable{
         this.placeName = placeName;
     }
 
-    public List<TimesByDay> getTimesByDayLit() {
-        return timesByDayLit;
+    public Map<DayOfWeek, TimesByDay> getTimesByDayMap() {
+        return timesByDayMap;
     }
 
-    public void setTimesByDayLit(List<TimesByDay> timesByDayLit) {
-        this.timesByDayLit = timesByDayLit;
+    public void setTimesByDayMap(Map<DayOfWeek, TimesByDay> timesByDayMap) {
+        this.timesByDayMap = timesByDayMap;
     }
 }

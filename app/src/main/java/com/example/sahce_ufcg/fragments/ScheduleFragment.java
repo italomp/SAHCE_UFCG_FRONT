@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.ScheduleRegisterActivity;
-import com.example.sahce_ufcg.dtos.ScheduleResponseDto;
+import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

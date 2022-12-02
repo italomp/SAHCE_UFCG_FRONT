@@ -1,4 +1,4 @@
-package com.example.sahce_ufcg.dtos;
+package com.example.sahce_ufcg.dtos.schedule;
 
 import com.example.sahce_ufcg.models.TimesByDay;
 import com.squareup.moshi.Json;
