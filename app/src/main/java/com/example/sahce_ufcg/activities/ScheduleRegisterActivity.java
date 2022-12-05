@@ -146,7 +146,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     public void addDayInputCard(){
         CardView dayCard = (CardView) LayoutInflater
                 .from(getApplicationContext())
-                .inflate(R.layout.day_of_week_card, selectedDaysLayout, false);
+                .inflate(R.layout.day_of_week_card_of_schedule_register_screen, selectedDaysLayout, false);
         TextView dayView = dayCard.findViewById(R.id.text_day_output);
         String selectDay = spinnerDayOfWeek.getSelectedItem().toString();
         dayView.setText(selectDay);
