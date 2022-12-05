@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -16,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.ScheduleRegisterActivity;
 import com.example.sahce_ufcg.adapters.ScheduleListingAdapter;
+import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.services.ApiService;
@@ -23,6 +27,7 @@ import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,7 +39,8 @@ public class ScheduleFragment extends Fragment {
     private FloatingActionButton addButton;
     private RecyclerView scheduleListing;
     private String token;
-    ScheduleListingAdapter adapter;
+    private ScheduleListingAdapter adapter;
+    private Spinner placeSpinner;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,13 +48,66 @@ public class ScheduleFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_schedule, container, false);
         getPreferences();
         setViews();
-        getSchedules();
+        getPLaces();
         return view;
     }
 
     public void setViews(){
+        placeSpinner = view.findViewById(R.id.spinner_place);
         setScheduleListing();
         setAddButton();
+    }
+
+    public void getPLaces(){
+        ApiService.getPlaceService().getAll(token).enqueue(
+                new Callback<List<PlaceResponseDto>>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(
+                            Call<List<PlaceResponseDto>> call,
+                            Response<List<PlaceResponseDto>> response
+                    ){
+                        if(response.isSuccessful()){
+                            if(response.body() == null){
+                                Util.showMessage(
+                                        view.getContext(),
+                                        "Não existem espaços/locais cadastrados.");
+                                return;
+                            }
+                            ArrayList<String> placeNameList = new ArrayList<>();
+                            response.body().forEach(
+                                    placeResponseDto -> placeNameList.add(placeResponseDto.getName().toUpperCase())
+                            );
+                            setPlaceSpinner(placeNameList);
+                        }
+                        else{
+                            Util.showMessage(view.getContext(), "Http Status: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<PlaceResponseDto>> call, Throwable t) {
+                        Util.showMessage(view.getContext(), "Falha na comunicação");
+                    }
+                }
+        );
+    }
+
+    public void setPlaceSpinner(ArrayList<String> placeNameList){
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
+                view.getContext(), android.R.layout.simple_spinner_item, placeNameList);
+        placeSpinner.setAdapter(spinnerAdapter);
+        
+        placeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedPlace = placeSpinner.getSelectedItem().toString();
+                getSchedulesByPlaceName(selectedPlace);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 
     public void setScheduleListing(){
@@ -77,8 +136,8 @@ public class ScheduleFragment extends Fragment {
         token = Util.getTokenPreferences(view.getContext());
     }
 
-    public void getSchedules(){
-        ApiService.getScheduleService().getAll("Quadra de Tennis", token).enqueue(
+    public void getSchedulesByPlaceName(String placeName){
+        ApiService.getScheduleService().getAll(placeName, token).enqueue(
                 new Callback<List<ScheduleResponseDto>>() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
@@ -87,10 +146,14 @@ public class ScheduleFragment extends Fragment {
                             Response<List<ScheduleResponseDto>> response
                     ){
                         if(response.isSuccessful()){
-                            if(response.body() == null) return;
-                            System.out.println(response.body().size());
-                            List<Schedule> scheduleList = Mapper.fromScheduleResponseDtoListToScheduleList(response.body());
                             scheduleListing.removeAllViews();
+                            if(response.body() == null)
+                                return;
+
+                            if(response.body().size() == 0)
+                                Util.showMessage(view.getContext(), "Espaço sem horários cadastrados.");
+
+                            List<Schedule> scheduleList = Mapper.fromScheduleResponseDtoListToScheduleList(response.body());
                             adapter.setScheduleList(scheduleList);
                         }
                         else{

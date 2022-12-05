@@ -57,8 +57,6 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView finalDateView = ((ScheduleViewHolder) holder).getFinalDateView();
         Schedule currSchedule = scheduleList.get(position);
 
-        System.out.println(currSchedule.getInitialDate());
-        System.out.println(currSchedule.getInitialDate().toString());
         String initialDate = formatAmericanDateToBrazilianFormat(currSchedule.getInitialDate());
         String finalDate = formatAmericanDateToBrazilianFormat(currSchedule.getFinalDate());
 
