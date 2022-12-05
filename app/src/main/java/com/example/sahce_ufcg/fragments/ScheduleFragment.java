@@ -10,12 +10,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.ScheduleRegisterActivity;
+import com.example.sahce_ufcg.adapters.ScheduleListingAdapter;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
+import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.services.ApiService;
+import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,8 +46,18 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void setViews(){
-        scheduleListing = view.findViewById(R.id.schedule_listing);
+        setScheduleListing();
         setAddButton();
+    }
+
+    public void setScheduleListing(){
+        scheduleListing = view.findViewById(R.id.schedule_listing);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        ScheduleListingAdapter adapter = new ScheduleListingAdapter();
+        adapter.setHasStableIds(true);
+        scheduleListing.setLayoutManager(layoutManager);
+        scheduleListing.setAdapter(adapter);
+        scheduleListing.setHasFixedSize(true);
     }
 
     public void setAddButton(){
@@ -71,16 +85,18 @@ public class ScheduleFragment extends Fragment {
                             Call<List<ScheduleResponseDto>> call,
                             Response<List<ScheduleResponseDto>> response
                     ){
-                        Util.showMessage(getContext(), "" + response.code());
                         if(response.isSuccessful()){
                             if(response.body() == null) return;
-                            response.body().forEach(dto -> {
-                                System.out.println(dto.getPlaceName());
-                                System.out.println(dto.getFinalDate());
-                                System.out.println(dto.getFinalDate());
-                                System.out.println(dto.getTimesByDayList().size());
-                                System.out.println("----//----");
-                            });
+                            System.out.println(response.body().size());
+                            List<Schedule> scheduleList = Mapper.fromScheduleResponseDtoListToScheduleList(response.body());
+                            scheduleListing.removeAllViews();
+                            ScheduleListingAdapter adapter = new ScheduleListingAdapter();
+                            adapter.setHasStableIds(true);
+                            adapter.setScheduleList(scheduleList);
+                            scheduleListing.setAdapter(adapter);
+                        }
+                        else{
+                            Util.showMessage(getContext(), "Http Status Code: " + response.code());
                         }
                     }
 

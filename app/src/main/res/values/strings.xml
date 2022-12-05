@@ -50,7 +50,8 @@
 
     <!-- Labels -->
     <string name="spinner_place_label">Espaço</string>
-    <string name="period_label">Datas</string>
+    <string name="dates_label">Datas</string>
+    <string name="period_label_schedule_card">Período:</string>
     <string name="times_first_day_label">Horários do 1º Dia</string>
     <string name="times_second_day_label">Horários do 2º Dia</string>
 

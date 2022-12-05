@@ -93,7 +93,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                             Response<List<PlaceResponseDto>> response
                     ){
                         if(response.isSuccessful()){
-                            List<Place> placeList = Mapper.mapPlaceResponseDtoListToPlaceList(response.body());
+                            List<Place> placeList = Mapper.fromPlaceResponseDtoListToPlaceList(response.body());
                             SpinnerAdapter adapter = new ArrayAdapter<>(
                                     ScheduleRegisterActivity.this,
                                     android.R.layout.simple_spinner_item,
