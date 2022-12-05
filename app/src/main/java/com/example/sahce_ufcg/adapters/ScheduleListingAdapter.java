@@ -1,5 +1,9 @@
 package com.example.sahce_ufcg.adapters;
 
+import static com.example.sahce_ufcg.util.DateMapper.formatAmericanDateToBrazilianFormat;
+import static com.example.sahce_ufcg.util.DateMapper.fromDayOfWeekToString;
+
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,7 @@ import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,15 +50,20 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return new ScheduleViewHolder(scheduleCardView);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         TextView initialDateView = ((ScheduleViewHolder) holder).getInitialDateView();
         TextView finalDateView = ((ScheduleViewHolder) holder).getFinalDateView();
         Schedule currSchedule = scheduleList.get(position);
 
-        initialDateView.setText(currSchedule.getInitialDate().toString());
-        finalDateView.setText(currSchedule.getFinalDate().toString());
+        System.out.println(currSchedule.getInitialDate());
+        System.out.println(currSchedule.getInitialDate().toString());
+        String initialDate = formatAmericanDateToBrazilianFormat(currSchedule.getInitialDate());
+        String finalDate = formatAmericanDateToBrazilianFormat(currSchedule.getFinalDate());
+
+        initialDateView.setText(initialDate);
+        finalDateView.setText(finalDate);
 
         setDaysOfWeekListing((ScheduleViewHolder) holder, currSchedule.getTimesByDayLit());
     }
@@ -63,25 +73,37 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return scheduleList.size();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDaysOfWeekListing(ScheduleViewHolder holder, List<TimesByDay> timesByDayList){
         LinearLayout daysOfWeekListing = holder.getDaysOfWeekListing();
         timesByDayList.forEach(
                 timesByDay -> {
-                    LinearLayout dayOfWeekLayout = (LinearLayout) LayoutInflater
-                            .from(holder.itemView.getContext())
-                            .inflate(R.layout.day_of_week_card_of_schedule_card,
-                                    (ViewGroup) holder.itemView.getParent(), false);
-                    TextView dayOfWeekTextView = dayOfWeekLayout.findViewById(R.id.day_of_week);
-                    TextView initialTimeTextView = dayOfWeekLayout.findViewById(R.id.initial_time);
-                    TextView finalTimeTextView = dayOfWeekLayout.findViewById(R.id.final_time);
-
-                    dayOfWeekTextView.setText(timesByDay.getDay().toString());
-                    initialTimeTextView.setText(timesByDay.getInitialTime().toString());
-                    finalTimeTextView.setText(timesByDay.getFinalTime().toString());
+                    LinearLayout dayOfWeekLayout = setDayOfWeek(holder, timesByDay);
                     daysOfWeekListing.addView(dayOfWeekLayout);
                 }
         );
+    }
+
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LinearLayout setDayOfWeek(ScheduleViewHolder holder, TimesByDay timesByDay){
+        LinearLayout dayOfWeekLayout = (LinearLayout) LayoutInflater
+                .from(holder.itemView.getContext())
+                .inflate(R.layout.day_of_week_card_of_schedule_card,
+                        (ViewGroup) holder.itemView.getParent(), false);
+        TextView dayOfWeekTextView = dayOfWeekLayout.findViewById(R.id.day_of_week);
+        TextView initialTimeTextView = dayOfWeekLayout.findViewById(R.id.initial_time);
+        TextView finalTimeTextView = dayOfWeekLayout.findViewById(R.id.final_time);
+
+        String day = fromDayOfWeekToString(timesByDay.getDay());
+        String initialTime = timesByDay.getInitialTime().toString();
+        String finalTime = timesByDay.getFinalTime().toString();
+
+        dayOfWeekTextView.setText(day + ":");
+        initialTimeTextView.setText(initialTime);
+        finalTimeTextView.setText(finalTime);
+
+        return dayOfWeekLayout;
     }
 
     public class ScheduleViewHolder extends RecyclerView.ViewHolder{

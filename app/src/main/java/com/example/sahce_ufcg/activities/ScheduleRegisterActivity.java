@@ -2,6 +2,9 @@ package com.example.sahce_ufcg.activities;
 
 import static android.text.format.DateFormat.is24HourFormat;
 
+import static com.example.sahce_ufcg.util.DateMapper.fromLocalDateMonthToNumericMoth;
+import static com.example.sahce_ufcg.util.DateMapper.fromStringToDayOfWeek;
+
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +29,7 @@ import com.example.sahce_ufcg.dtos.schedule.ScheduleRequestDto;
 import com.example.sahce_ufcg.models.Place;
 import com.example.sahce_ufcg.models.TimesByDay;
 import com.example.sahce_ufcg.services.ApiService;
+import com.example.sahce_ufcg.util.DateMapper;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -155,7 +159,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     }
 
     public void storageSelectedDay(String selectDay){
-        DayOfWeek day = formatDay(selectDay);
+        DayOfWeek day = fromStringToDayOfWeek(selectDay);
         // O dia é adicionado 2x, para atender a estratégia de controle dos horários, inicial
         // e final (dois horários para cada dia), do dia.
         daysList.add(day);
@@ -266,26 +270,6 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
             timeByDay.setFinalTime(LocalTime.of(hour, minute));
     }
 
-    public DayOfWeek formatDay(String day){
-        switch (day){
-            case "SEGUNDA":
-                return DayOfWeek.MONDAY;
-            case "TERÇA":
-                return DayOfWeek.TUESDAY;
-            case "QUARTA":
-                return DayOfWeek.WEDNESDAY;
-            case "QUINTA":
-                return DayOfWeek.THURSDAY;
-            case "SEXTA":
-                return DayOfWeek.FRIDAY;
-            case "SÁBADO":
-                return DayOfWeek.SATURDAY;
-            case "DOMINGO":
-                return DayOfWeek.SUNDAY;
-        }
-        return null;
-    }
-
     public void setSendButton(){
         sendButton = findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -324,7 +308,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     // Receive da data like that: Nov 1, 2022
     public String formatSelectedDateToBrazilianFormat(String inputDate){
         String[] arrayDate = inputDate.split(" ");
-        String month = formatMonth(arrayDate[0]);
+        String month = fromLocalDateMonthToNumericMoth(arrayDate[0]);
         String day = arrayDate[1].split(",")[0];
         day = day.length() == 1 ? "0" + day : day;
         String year = arrayDate[2];
@@ -342,35 +326,5 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         int year = Integer.parseInt(arrayDate[2]);
 
         return LocalDate.of(year, month, day);
-    }
-
-    private String formatMonth(String month){
-        switch (month.toLowerCase()){
-            case "jan":
-                return "01";
-            case "feb":
-                return "02";
-            case "mar":
-                return "03";
-            case "apr":
-                return "04";
-            case "may":
-                return "05";
-            case "jun":
-                return "06";
-            case "jul":
-                return "07";
-            case "aug":
-                return "08";
-            case "sep":
-                return "09";
-            case "oct":
-                return "10";
-            case "nov":
-                return "11";
-            case "dec":
-                return "12";
-        }
-        return null;
     }
 }
