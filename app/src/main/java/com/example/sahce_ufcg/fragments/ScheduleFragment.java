@@ -34,6 +34,7 @@ public class ScheduleFragment extends Fragment {
     private FloatingActionButton addButton;
     private RecyclerView scheduleListing;
     private String token;
+    ScheduleListingAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,7 @@ public class ScheduleFragment extends Fragment {
     public void setScheduleListing(){
         scheduleListing = view.findViewById(R.id.schedule_listing);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        ScheduleListingAdapter adapter = new ScheduleListingAdapter();
+        adapter = new ScheduleListingAdapter();
         adapter.setHasStableIds(true);
         scheduleListing.setLayoutManager(layoutManager);
         scheduleListing.setAdapter(adapter);
@@ -77,7 +78,7 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void getSchedules(){
-        ApiService.getScheduleService().getAll("Campo de Futebol", token).enqueue(
+        ApiService.getScheduleService().getAll("Quadra de Tennis", token).enqueue(
                 new Callback<List<ScheduleResponseDto>>() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
@@ -90,10 +91,7 @@ public class ScheduleFragment extends Fragment {
                             System.out.println(response.body().size());
                             List<Schedule> scheduleList = Mapper.fromScheduleResponseDtoListToScheduleList(response.body());
                             scheduleListing.removeAllViews();
-                            ScheduleListingAdapter adapter = new ScheduleListingAdapter();
-                            adapter.setHasStableIds(true);
                             adapter.setScheduleList(scheduleList);
-                            scheduleListing.setAdapter(adapter);
                         }
                         else{
                             Util.showMessage(getContext(), "Http Status Code: " + response.code());

@@ -1,16 +1,21 @@
 package com.example.sahce_ufcg.adapters;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
+import com.example.sahce_ufcg.models.TimesByDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +45,17 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return new ScheduleViewHolder(scheduleCardView);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-//        LinearLayout dayOfWeekLayout = (LinearLayout) LayoutInflater
-//                .from(holder.itemView.getContext())
-//                .inflate(R.layout.day_of_week_layout, (ViewGroup) holder.itemView, false);
         TextView initialDateView = ((ScheduleViewHolder) holder).getInitialDateView();
         TextView finalDateView = ((ScheduleViewHolder) holder).getFinalDateView();
-//        RecyclerView daysOfWeekListing = ((ScheduleViewHolder) holder).getDaysOfWeekListing();
         Schedule currSchedule = scheduleList.get(position);
+
         initialDateView.setText(currSchedule.getInitialDate().toString());
         finalDateView.setText(currSchedule.getFinalDate().toString());
-//        daysOfWeekListing
+
+        setDaysOfWeekListing((ScheduleViewHolder) holder, currSchedule.getTimesByDayLit());
     }
 
     @Override
@@ -59,9 +63,30 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return scheduleList.size();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void setDaysOfWeekListing(ScheduleViewHolder holder, List<TimesByDay> timesByDayList){
+        LinearLayout daysOfWeekListing = holder.getDaysOfWeekListing();
+        timesByDayList.forEach(
+                timesByDay -> {
+                    LinearLayout dayOfWeekLayout = (LinearLayout) LayoutInflater
+                            .from(holder.itemView.getContext())
+                            .inflate(R.layout.day_of_week_card_of_schedule_card,
+                                    (ViewGroup) holder.itemView.getParent(), false);
+                    TextView dayOfWeekTextView = dayOfWeekLayout.findViewById(R.id.day_of_week);
+                    TextView initialTimeTextView = dayOfWeekLayout.findViewById(R.id.initial_time);
+                    TextView finalTimeTextView = dayOfWeekLayout.findViewById(R.id.final_time);
+
+                    dayOfWeekTextView.setText(timesByDay.getDay().toString());
+                    initialTimeTextView.setText(timesByDay.getInitialTime().toString());
+                    finalTimeTextView.setText(timesByDay.getFinalTime().toString());
+                    daysOfWeekListing.addView(dayOfWeekLayout);
+                }
+        );
+    }
+
     public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         TextView initialDateView, finalDateView;
-        RecyclerView daysOfWeekListing;
+        LinearLayout daysOfWeekListing;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -78,7 +103,7 @@ public class ScheduleListingAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             return finalDateView;
         }
 
-        public RecyclerView getDaysOfWeekListing() {
+        public LinearLayout getDaysOfWeekListing() {
             return daysOfWeekListing;
         }
     }
