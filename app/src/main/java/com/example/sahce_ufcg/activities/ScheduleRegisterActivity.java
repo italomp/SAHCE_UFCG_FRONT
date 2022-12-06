@@ -2,6 +2,8 @@ package com.example.sahce_ufcg.activities;
 
 import static android.text.format.DateFormat.is24HourFormat;
 
+import static com.example.sahce_ufcg.util.DateMapper.formatDateInputSelectedToBrazilianFormat;
+import static com.example.sahce_ufcg.util.DateMapper.formatInputDateToLocalDate;
 import static com.example.sahce_ufcg.util.DateMapper.fromLocalDateMonthToNumericMoth;
 import static com.example.sahce_ufcg.util.DateMapper.fromStringToDayOfWeek;
 
@@ -209,7 +211,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                         new MaterialPickerOnPositiveButtonClickListener() {
                             @Override
                             public void onPositiveButtonClick(Object selection) {
-                                String date = formatSelectedDateToBrazilianFormat(picker.getHeaderText());
+                                String date = formatDateInputSelectedToBrazilianFormat(picker.getHeaderText());
                                 inputDate.setText(date);
                             }
                         });
@@ -303,28 +305,5 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                     }
                 }
         );
-    }
-
-    // Receive da data like that: Nov 1, 2022
-    public String formatSelectedDateToBrazilianFormat(String inputDate){
-        String[] arrayDate = inputDate.split(" ");
-        String month = fromLocalDateMonthToNumericMoth(arrayDate[0]);
-        String day = arrayDate[1].split(",")[0];
-        day = day.length() == 1 ? "0" + day : day;
-        String year = arrayDate[2];
-        return day + "/" + month + "/" + year;
-    }
-
-    // Receive a date like that: dd/mm/yyyy
-    public LocalDate formatInputDateToLocalDate(String inputDate){
-        if (inputDate == null) return null;
-        if (inputDate.equals("")) return null;
-
-        String[] arrayDate = inputDate.split("/");
-        int day = Integer.parseInt(arrayDate[0]);
-        int month = Integer.parseInt(arrayDate[1]);
-        int year = Integer.parseInt(arrayDate[2]);
-
-        return LocalDate.of(year, month, day);
     }
 }

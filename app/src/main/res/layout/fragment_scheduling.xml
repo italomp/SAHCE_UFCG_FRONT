@@ -32,13 +32,32 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
+            <TextView
+                android:id="@+id/place_spinner_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/spinner_place_label"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/place_spinner"/>
+
+            <Spinner
+                android:id="@+id/place_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/place_spinner_label"
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/background_buttons"
+                />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_period_start_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="130dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toStartOf="@id/input_period_end_layout"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -58,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:minWidth="130dp"
                 app:layout_constraintStart_toEndOf="@id/input_period_start_layout"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toStartOf="@id/search_btn"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -78,7 +97,7 @@
 
                 android:src="@drawable/ic_search"
                 app:layout_constraintStart_toEndOf="@id/input_period_end_layout"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:backgroundTint="@color/background_buttons"/>

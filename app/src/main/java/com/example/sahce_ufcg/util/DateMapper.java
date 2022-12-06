@@ -88,6 +88,7 @@ public class DateMapper {
         return null;
     }
 
+    // Receive a date like that: yyyy-mm-dd
     public static String formatAmericanDateToBrazilianFormat(LocalDate inputDate){
         String date = inputDate.toString();
         String[] arrayDate = date.split("-");
@@ -96,5 +97,29 @@ public class DateMapper {
         day = day.length() == 1 ? "0" + day : day;
         String year = arrayDate[0];
         return day + "/" + month + "/" + year;
+    }
+
+    // Receive da date like that: Nov 1, 2022
+    public static String formatDateInputSelectedToBrazilianFormat(String inputDate){
+        String[] arrayDate = inputDate.split(" ");
+        String month = fromLocalDateMonthToNumericMoth(arrayDate[0]);
+        String day = arrayDate[1].split(",")[0];
+        day = day.length() == 1 ? "0" + day : day;
+        String year = arrayDate[2];
+        return day + "/" + month + "/" + year;
+    }
+
+    // Receive a date like that: dd/mm/yyyy
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static LocalDate formatInputDateToLocalDate(String inputDate){
+        if (inputDate == null) return null;
+        if (inputDate.equals("")) return null;
+
+        String[] arrayDate = inputDate.split("/");
+        int day = Integer.parseInt(arrayDate[0]);
+        int month = Integer.parseInt(arrayDate[1]);
+        int year = Integer.parseInt(arrayDate[2]);
+
+        return LocalDate.of(year, month, day);
     }
 }

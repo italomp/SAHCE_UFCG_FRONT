@@ -1,9 +1,13 @@
 package com.example.sahce_ufcg.fragments;
 
+import static com.example.sahce_ufcg.util.DateMapper.formatDateInputSelectedToBrazilianFormat;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,7 +17,9 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputEditText;
 
 public class SchedulingFragment extends Fragment {
+    private Spinner placeSpinner;
     private TextInputEditText inputPeriodStart, inputPeriodEnd;
+    private ImageButton button;
     private View view;
 
     @Override
@@ -24,50 +30,39 @@ public class SchedulingFragment extends Fragment {
         return view;
     }
 
+    private void setDateInput(TextInputEditText input){
+        input.clearFocus();
+        MaterialDatePicker<Long> datePicker = MaterialDatePicker.Builder
+                .datePicker()
+                .setTitleText("Selecione uma Data")
+                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
+                .build();
+
+        input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datePicker.show(getParentFragmentManager(), "Material_Date_Picker");
+                datePicker.addOnPositiveButtonClickListener(
+                        new MaterialPickerOnPositiveButtonClickListener() {
+                            @Override
+                            public void onPositiveButtonClick(Object selection) {
+                                String formattedDate = formatDateInputSelectedToBrazilianFormat(datePicker.getHeaderText());
+                                if(input.getId() == inputPeriodStart.getId()){
+                                    inputPeriodStart.setText(formattedDate);
+                                }
+                                else if (input.getId() == inputPeriodEnd.getId()){
+                                    inputPeriodEnd.setText(formattedDate);
+                                }
+                            }
+                        });
+            }
+        });
+    }
+
     private void setPeriodInputs(){
         inputPeriodStart = view.findViewById(R.id.input_period_start);
         inputPeriodEnd = view.findViewById(R.id.input_period_end);
-        inputPeriodStart.clearFocus();
-        inputPeriodEnd.clearFocus();
-
-        MaterialDatePicker<Long> startDatePicker = MaterialDatePicker.Builder
-                .datePicker()
-                .setTitleText("Data Inicial")
-                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
-                .build();
-
-        MaterialDatePicker<Long> endDatePicker = MaterialDatePicker.Builder
-                .datePicker()
-                .setTitleText("Data Final")
-                .setSelection(MaterialDatePicker.thisMonthInUtcMilliseconds())
-                .build();
-
-        inputPeriodStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startDatePicker.show(getParentFragmentManager(), "Material_Date_Picker");
-                startDatePicker.addOnPositiveButtonClickListener(
-                        new MaterialPickerOnPositiveButtonClickListener() {
-                            @Override
-                            public void onPositiveButtonClick(Object selection) {
-                                inputPeriodStart.setText(startDatePicker.getHeaderText());
-                            }
-                        });
-            }
-        });
-
-        inputPeriodEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                endDatePicker.show(getParentFragmentManager(), "Material_Date_Picker");
-                endDatePicker.addOnPositiveButtonClickListener(
-                        new MaterialPickerOnPositiveButtonClickListener() {
-                            @Override
-                            public void onPositiveButtonClick(Object selection) {
-                                inputPeriodEnd.setText(endDatePicker.getHeaderText());
-                            }
-                        });
-            }
-        });
+        setDateInput(inputPeriodStart);
+        setDateInput(inputPeriodEnd);
     }
 }
