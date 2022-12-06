@@ -4,7 +4,6 @@ import static android.text.format.DateFormat.is24HourFormat;
 
 import static com.example.sahce_ufcg.util.DateMapper.formatDateInputSelectedToBrazilianFormat;
 import static com.example.sahce_ufcg.util.DateMapper.formatInputDateToLocalDate;
-import static com.example.sahce_ufcg.util.DateMapper.fromLocalDateMonthToNumericMoth;
 import static com.example.sahce_ufcg.util.DateMapper.fromStringToDayOfWeek;
 
 import android.annotation.SuppressLint;
@@ -31,7 +30,6 @@ import com.example.sahce_ufcg.dtos.schedule.ScheduleRequestDto;
 import com.example.sahce_ufcg.models.Place;
 import com.example.sahce_ufcg.models.TimesByDay;
 import com.example.sahce_ufcg.services.ApiService;
-import com.example.sahce_ufcg.util.DateMapper;
 import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -40,7 +38,6 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,7 +96,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                             Response<List<PlaceResponseDto>> response
                     ){
                         if(response.isSuccessful()){
-                            List<Place> placeList = Mapper.fromPlaceResponseDtoListToPlaceList(response.body());
+                            List<Place> placeList = Mapper.fromPlaceDtoListToPlaceList(response.body());
                             SpinnerAdapter adapter = new ArrayAdapter<>(
                                     ScheduleRegisterActivity.this,
                                     android.R.layout.simple_spinner_item,

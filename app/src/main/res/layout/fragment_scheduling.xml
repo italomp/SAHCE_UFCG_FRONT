@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SchedulingFragment">
-
+    tools:context=".fragments.SchedulingFragment"
+    android:layout_marginBottom="45dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/input_search_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -103,6 +104,12 @@
                 android:backgroundTint="@color/background_buttons"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scheduling_listing"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_search_container"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

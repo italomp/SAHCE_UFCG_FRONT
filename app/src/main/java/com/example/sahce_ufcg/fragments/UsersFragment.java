@@ -1,6 +1,6 @@
 package com.example.sahce_ufcg.fragments;
 
-import static com.example.sahce_ufcg.util.Mapper.fromUserResponseDtoListToUserList;
+import static com.example.sahce_ufcg.util.Mapper.fromUserDtoListToUserList;
 
 import android.content.Intent;
 import android.os.Build;
@@ -84,7 +84,7 @@ public class UsersFragment extends Fragment {
                     ){
                      if(response.isSuccessful()){
                          List<UserResponseDto> userDtoList = response.body();
-                         List<User> userList = fromUserResponseDtoListToUserList(userDtoList);
+                         List<User> userList = fromUserDtoListToUserList(userDtoList);
                          userListing.removeAllViews();
                          adapter.setUserList(userList);
                      }

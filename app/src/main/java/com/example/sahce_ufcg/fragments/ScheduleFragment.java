@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.RequiresApi;
@@ -21,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.ScheduleRegisterActivity;
 import com.example.sahce_ufcg.adapters.ScheduleListingAdapter;
-import com.example.sahce_ufcg.dtos.PlaceResponseDto;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.services.ApiService;
@@ -29,7 +27,6 @@ import com.example.sahce_ufcg.util.Mapper;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -117,7 +114,7 @@ public class ScheduleFragment extends Fragment {
                             if(response.body().size() == 0)
                                 Util.showMessage(view.getContext(), "Espaço sem horários cadastrados.");
 
-                            List<Schedule> scheduleList = Mapper.fromScheduleResponseDtoListToScheduleList(response.body());
+                            List<Schedule> scheduleList = Mapper.fromScheduleDtoListToScheduleList(response.body());
                             adapter.setScheduleList(scheduleList);
                         }
                         else{

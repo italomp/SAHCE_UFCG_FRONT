@@ -10,15 +10,7 @@ public class Schedule implements Serializable{
     private List<TimesByDay> timesByDayLit;
     private String placeName;
     private String ownerEmail;
-
-    public Schedule(LocalDate initialDate, LocalDate finalDate,
-                    List<TimesByDay> timesByDayLit, String placeName, String ownerEmail) {
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-        this.timesByDayLit = timesByDayLit;
-        this.placeName = placeName;
-        this.ownerEmail = ownerEmail;
-    }
+    private boolean available;
 
     public Schedule(LocalDate initialDate, LocalDate finalDate,
                     List<TimesByDay> timesByDayLit, String placeName) {
@@ -27,6 +19,17 @@ public class Schedule implements Serializable{
         this.timesByDayLit = timesByDayLit;
         this.placeName = placeName;
         this.ownerEmail = null;
+        this.available = true;
+    }
+
+    public Schedule(LocalDate initialDate, LocalDate finalDate, List<TimesByDay> timesByDayLit,
+                    String placeName, String ownerEmail, boolean available) {
+        this.initialDate = initialDate;
+        this.finalDate = finalDate;
+        this.timesByDayLit = timesByDayLit;
+        this.placeName = placeName;
+        this.ownerEmail = ownerEmail;
+        this.available = available;
     }
 
     public Schedule(){}
@@ -69,5 +72,13 @@ public class Schedule implements Serializable{
 
     public void setTimesByDayLit(List<TimesByDay> timesByDayLit) {
         this.timesByDayLit = timesByDayLit;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }

@@ -70,7 +70,7 @@ public class PlacesFragment extends Fragment {
                     public void onResponse(Call<List<PlaceResponseDto>> call, Response<List<PlaceResponseDto>> response) {
                         if(response.isSuccessful()){
                             List<PlaceResponseDto> placeDtoList = response.body();
-                            List<Place> placeList = Mapper.fromPlaceResponseDtoListToPlaceList(placeDtoList);
+                            List<Place> placeList = Mapper.fromPlaceDtoListToPlaceList(placeDtoList);
                             placeList = placeList.stream().sorted().collect(Collectors.toList());
                             fillPlaceListing(placeList);
                         }
