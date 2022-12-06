@@ -18,7 +18,7 @@ import com.example.sahce_ufcg.fragments.PlacesFragment;
 import com.example.sahce_ufcg.fragments.ScheduleFragment;
 import com.example.sahce_ufcg.fragments.UsersFragment;
 import com.example.sahce_ufcg.models.User;
-import com.example.sahce_ufcg.dtos.UserResponseBody;
+import com.example.sahce_ufcg.dtos.UserResponseDto;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -44,11 +44,11 @@ public class Dashboard extends AppCompatActivity {
 
     private void getUserType(){
         ApiService.getUserService().getUser(email, token).enqueue(
-                new Callback<UserResponseBody>() {
+                new Callback<UserResponseDto>() {
                     @Override
                     public void onResponse(
-                            Call<UserResponseBody> call,
-                            Response<UserResponseBody> response
+                            Call<UserResponseDto> call,
+                            Response<UserResponseDto> response
                     ){
                         if(response.isSuccessful()){
                             User.UserType userType = response.body().getUserType();
@@ -61,7 +61,7 @@ public class Dashboard extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<UserResponseBody> call, Throwable t) {
+                    public void onFailure(Call<UserResponseDto> call, Throwable t) {
                         Util.showMessage(Dashboard.this, "Falha na requisição");
                     }
                 }

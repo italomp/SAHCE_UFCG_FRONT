@@ -3,7 +3,7 @@ package com.example.sahce_ufcg.dtos;
 import com.example.sahce_ufcg.models.User;
 import com.squareup.moshi.Json;
 
-public class UserResponseBody {
+public class UserResponseDto {
     @Json(name = "name")
     private String name;
     @Json(name = "phone")
@@ -17,8 +17,8 @@ public class UserResponseBody {
     @Json(name = "userType")
     private User.UserType userType;
 
-    public UserResponseBody(String name, String phone, String address, String email,
-                            String password, User.UserType userType) {
+    public UserResponseDto(String name, String phone, String address, String email,
+                           String password, User.UserType userType) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -27,7 +27,7 @@ public class UserResponseBody {
         this.userType = userType;
     }
 
-    public UserResponseBody() {
+    public UserResponseDto() {
     }
 
     public String getName() {

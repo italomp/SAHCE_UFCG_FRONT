@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sahce_ufcg.R;
-import com.example.sahce_ufcg.dtos.UserResponseBody;
+import com.example.sahce_ufcg.dtos.UserResponseDto;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.services.ApiService;
 import com.google.android.material.textfield.TextInputEditText;
@@ -55,9 +55,9 @@ public class UserRegisterActivity extends AppCompatActivity {
                 User.UserType userType = getUserTypeSelected();
 
                 User newUser = new User(name, phone, address, email, password, userType);
-                ApiService.getUserService().createUser(newUser).enqueue(new Callback<UserResponseBody>() {
+                ApiService.getUserService().createUser(newUser).enqueue(new Callback<UserResponseDto>() {
                     @Override
-                    public void onResponse(Call<UserResponseBody> call, Response<UserResponseBody> response) {
+                    public void onResponse(Call<UserResponseDto> call, Response<UserResponseDto> response) {
                         if(response.isSuccessful()){
                             showMessage("Cadastro realizado com sucesso!");
                             finish();
@@ -67,7 +67,7 @@ public class UserRegisterActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<UserResponseBody> call, Throwable t) {
+                    public void onFailure(Call<UserResponseDto> call, Throwable t) {
                         showMessage("Houve um erro com a resposta do servidor.");
                     }
                 });

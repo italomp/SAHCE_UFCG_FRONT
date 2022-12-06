@@ -34,8 +34,9 @@
         <entry key="app/src/main/res/layout/fragment_times.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_times_settings.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_users.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/inactive_user_card.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/places_listing_item.xml" value="0.2817028985507246" />
-        <entry key="app/src/main/res/layout/schedule_card.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/schedule_card.xml" value="0.3045977011494253" />
         <entry key="app/src/main/res/layout/time_input_card.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/time_input_layout.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/time_inputs_layout.xml" value="0.2817028985507246" />

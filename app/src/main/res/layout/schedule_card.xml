@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    >
+    android:layout_margin="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +12,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white">
             <TextView
                 android:id="@+id/date_label"
                 android:layout_width="wrap_content"
@@ -23,7 +23,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/initial_date"
-                android:layout_marginHorizontal="5dp"/>
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"/>
 
             <TextView
                 android:id="@+id/initial_date"
@@ -33,7 +34,8 @@
                 app:layout_constraintStart_toEndOf="@id/date_label"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/final_date"
-                android:layout_marginHorizontal="5dp"/>
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"/>
 
             <TextView
                 android:id="@+id/final_date"
@@ -42,14 +44,16 @@
                 android:text="Data Final"
                 app:layout_constraintStart_toEndOf="@id/initial_date"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginHorizontal="5dp"/>
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/white"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/days_of_week_listing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            android:backgroundTint="@color/white"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

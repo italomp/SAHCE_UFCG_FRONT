@@ -1,7 +1,9 @@
 package com.example.sahce_ufcg.services;
 
+import com.example.sahce_ufcg.dtos.UserResponseDto;
 import com.example.sahce_ufcg.models.User;
-import com.example.sahce_ufcg.dtos.UserResponseBody;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -13,12 +15,15 @@ import retrofit2.http.Path;
 public interface UserService {
 
     @POST("/v1/anonymous/users/")
-    Call<UserResponseBody> createUser(@Body User user);
+    Call<UserResponseDto> createUser(@Body User user);
 
     @POST("/login")
     Call<Void> login(@Body User user);
 
     @GET("/v1/protected/users/{email}")
-    Call<UserResponseBody> getUser(@Path("email") String email,
-                                   @Header("Authorization") String token);
+    Call<UserResponseDto> getUser(@Path("email") String email,
+                                  @Header("Authorization") String token);
+
+    @GET("/v1/admin/users/inactive")
+    Call<List<UserResponseDto>> getAllInactiveUsers(@Header("Authorization") String token);
 }
