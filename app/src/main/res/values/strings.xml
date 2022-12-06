@@ -14,6 +14,7 @@
     <string name="field_phone">Telefone</string>
 
     <!-- Headers -->
+    <string name="header_user_fragment">Usuários</string>
     <string name="header_user_register">Cadastrar Usuário</string>
     <string name="header_place_register">Cadastrar Espaço</string>
     <string name="header_login">Login</string>
@@ -58,6 +59,10 @@
     <!-- Hints -->
     <string name="initial_date_or_time_input">Inicial</string>
     <string name="final_date_or_time_input">Final</string>
+
+    <!-- Radio Button Texts -->
+    <string name="internal_community_radio_btn">Comunidade Interna</string>
+    <string name="external_community_radio_btn">Comunidade Externa</string>
 
     <string-array name="days_of_week">
         <item>SEGUNDA</item>
