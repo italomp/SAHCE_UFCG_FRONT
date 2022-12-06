@@ -1,17 +1,20 @@
 package com.example.sahce_ufcg.fragments;
 
 import static com.example.sahce_ufcg.util.DateMapper.formatDateInputSelectedToBrazilianFormat;
+import static com.example.sahce_ufcg.util.PlaceSpinnerSetter.fillPlaceSpinner;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.sahce_ufcg.R;
+import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -19,15 +22,27 @@ import com.google.android.material.textfield.TextInputEditText;
 public class SchedulingFragment extends Fragment {
     private Spinner placeSpinner;
     private TextInputEditText inputPeriodStart, inputPeriodEnd;
-    private ImageButton button;
+    private ImageButton searchButton;
     private View view;
+    private String token;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_scheduling, container, false);
+        getPreferences();
+        placeSpinner();
         setPeriodInputs();
         return view;
+    }
+
+    private void getPreferences(){
+        token = Util.getTokenPreferences(getContext());
+    }
+
+    private void placeSpinner(){
+        placeSpinner = view.findViewById(R.id.place_spinner);
+        fillPlaceSpinner(getContext(), token, placeSpinner);
     }
 
     private void setDateInput(TextInputEditText input){

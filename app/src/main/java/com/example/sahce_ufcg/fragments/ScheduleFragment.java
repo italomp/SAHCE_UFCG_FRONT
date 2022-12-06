@@ -1,5 +1,7 @@
 package com.example.sahce_ufcg.fragments;
 
+import static com.example.sahce_ufcg.util.PlaceSpinnerSetter.fillPlaceSpinner;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
@@ -48,56 +50,18 @@ public class ScheduleFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_schedule, container, false);
         getPreferences();
         setViews();
-        getPLaces();
         return view;
     }
 
     public void setViews(){
-        placeSpinner = view.findViewById(R.id.spinner_place);
         setScheduleListing();
         setAddButton();
+        setPlaceSpinner();
     }
 
-    public void getPLaces(){
-        ApiService.getPlaceService().getAll(token).enqueue(
-                new Callback<List<PlaceResponseDto>>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    @Override
-                    public void onResponse(
-                            Call<List<PlaceResponseDto>> call,
-                            Response<List<PlaceResponseDto>> response
-                    ){
-                        if(response.isSuccessful()){
-                            if(response.body() == null){
-                                Util.showMessage(
-                                        view.getContext(),
-                                        "Não existem espaços/locais cadastrados.");
-                                return;
-                            }
-                            ArrayList<String> placeNameList = new ArrayList<>();
-                            response.body().forEach(
-                                    placeResponseDto -> placeNameList.add(placeResponseDto.getName().toUpperCase())
-                            );
-                            setPlaceSpinner(placeNameList);
-                        }
-                        else{
-                            Util.showMessage(view.getContext(), "Http Status: " + response.code());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<PlaceResponseDto>> call, Throwable t) {
-                        Util.showMessage(view.getContext(), "Falha na comunicação");
-                    }
-                }
-        );
-    }
-
-    public void setPlaceSpinner(ArrayList<String> placeNameList){
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
-                view.getContext(), android.R.layout.simple_spinner_item, placeNameList);
-        placeSpinner.setAdapter(spinnerAdapter);
-        
+    public void setPlaceSpinner(){
+        placeSpinner = view.findViewById(R.id.spinner_place);
+        fillPlaceSpinner(getContext(), token, placeSpinner);
         placeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
