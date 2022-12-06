@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp">
 
         <TextView
             android:id="@+id/user_name"
@@ -18,8 +20,9 @@
             android:text="Nome do usuário"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/details_button"
-            android:backgroundTint="@color/white"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:backgroundTint="@color/white"
+            />
 
         <ImageButton
             android:id="@+id/details_button"
@@ -27,8 +30,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_details"
             android:backgroundTint="@color/background_buttons"
-            app:layout_constraintStart_toEndOf="@id/user_name"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="5dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="5dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
