@@ -12,4 +12,7 @@
     <color name="header_text">#2E1F74</color>
     <color name="background_buttons">#2E1F74</color>
     <color name="azul_claro_ufcg">#028cd6</color>
+
+    <color name="red">#FFFF0000</color>
+    <color name="green">#FF00CC00</color>
 </resources>

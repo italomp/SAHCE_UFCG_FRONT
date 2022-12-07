@@ -23,6 +23,8 @@
         <entry key="app/src/main/res/layout/activity_user_register.xml" value="0.27943840579710144" />
         <entry key="app/src/main/res/layout/day_of_week_card.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/day_of_week_card_of_schedule_card.xml" value="0.27807971014492755" />
+        <entry key="app/src/main/res/layout/day_of_week_card_of_schedule_register_screen.xml" value="0.2817028985507246" />
+        <entry key="app/src/main/res/layout/day_of_week_card_of_scheduling_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/day_of_week_layout.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_appointments.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/fragment_places.xml" value="0.5" />
@@ -37,6 +39,7 @@
         <entry key="app/src/main/res/layout/inactive_user_card.xml" value="0.27807971014492755" />
         <entry key="app/src/main/res/layout/places_listing_item.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/schedule_card.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/scheduling_card.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/time_input_card.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/time_input_layout.xml" value="0.2817028985507246" />
         <entry key="app/src/main/res/layout/time_inputs_layout.xml" value="0.2817028985507246" />

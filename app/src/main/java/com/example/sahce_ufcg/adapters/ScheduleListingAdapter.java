@@ -14,14 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 

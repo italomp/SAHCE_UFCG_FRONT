@@ -74,7 +74,7 @@ public class Schedule implements Serializable{
         this.timesByDayLit = timesByDayLit;
     }
 
-    public boolean isAvailable() {
+    public boolean getAvailable() {
         return available;
     }
 

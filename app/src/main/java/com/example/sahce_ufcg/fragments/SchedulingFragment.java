@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
+import com.example.sahce_ufcg.adapters.SchedulingListingAdapter;
 import com.example.sahce_ufcg.dtos.scheduling.SchedulingResponseDto;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.services.ApiService;
@@ -37,6 +38,7 @@ public class SchedulingFragment extends Fragment {
     private Spinner placeSpinner;
     private TextInputEditText inputPeriodStart, inputPeriodEnd;
     private RecyclerView schedulingListing;
+    private SchedulingListingAdapter adapter;
     private ImageButton searchButton;
     private View view;
     private String token;
@@ -49,18 +51,19 @@ public class SchedulingFragment extends Fragment {
         placeSpinner();
         setPeriodInputs();
         setSearchButton();
+        setSchedulingListing();
         return view;
     }
 
     public void setSchedulingListing(){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
                 getContext(), LinearLayoutManager.VERTICAL, false);
-        // adapter
-        // ...
+        adapter = new SchedulingListingAdapter();
         schedulingListing = view.findViewById(R.id.scheduling_listing);
         schedulingListing.setHasFixedSize(true);
         schedulingListing.setLayoutManager(layoutManager);
-//        schedulingListing.setAdapter();
+        adapter.setHasStableIds(true);
+        schedulingListing.setAdapter(adapter);
     }
 
     public void setSearchButton(){
@@ -102,7 +105,11 @@ public class SchedulingFragment extends Fragment {
                         if(response.isSuccessful()){
                             List<SchedulingResponseDto> schedulingList = response.body();
                             List<Schedule> scheduleList = fromSchedulingDtoListToScheduleList(schedulingList);
-
+                            schedulingListing.removeAllViews();
+                            adapter.setScheduleList(scheduleList);
+                            if(scheduleList.size() == 0){
+                                Util.showMessage(getContext(), "Espaço sem horários cadastrados");
+                            }
                         }
                         else{
                             Util.showMessage(getContext(), "Http Status Code: " + response.code());
