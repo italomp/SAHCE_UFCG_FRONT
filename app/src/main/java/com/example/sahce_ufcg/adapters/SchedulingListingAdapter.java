@@ -5,6 +5,7 @@ import static com.example.sahce_ufcg.util.DateMapper.fromDayOfWeekToString;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sahce_ufcg.R;
+import com.example.sahce_ufcg.activities.SchedulingDetailsActivity;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
 
@@ -61,10 +63,10 @@ public class SchedulingListingAdapter extends RecyclerView.Adapter<RecyclerView.
         LocalDate finalDate = currSchedule.getFinalDate();
         String strFinalDate = formatAmericanDateToBrazilianFormat(finalDate);
 
-        setAvailableView(availableView, currSchedule.getAvailable());
+        setAvailableView(availableView, currSchedule.isAvailable());
         periodView.setText("De " + strInitialDate + " a " + strFinalDate);
         setDaysOfWeekLayout(context, daysOfWeekLayout, currSchedule.getTimesByDayLit());
-        setOnClickListenerButton(detailsButton);
+        setOnClickListenerButton(context, detailsButton, currSchedule);
     }
 
     @Override
@@ -94,11 +96,13 @@ public class SchedulingListingAdapter extends RecyclerView.Adapter<RecyclerView.
         });
     }
 
-    public void setOnClickListenerButton(ImageButton btn){
+    public void setOnClickListenerButton(Context context, ImageButton btn, Schedule schedule){
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Mudar para activity que mostra detalhes do scheduling");
+                Intent intent = new Intent(context, SchedulingDetailsActivity.class);
+                intent.putExtra("schedule", schedule);
+                context.startActivity(intent);
             }
         });
     }

@@ -5,12 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp">
 
-    <!--
-    placeName, período, dias da semana e horários de cada dia, available ou não.
-    O que fica faltando:
-        email do dono, botão agendar, botão cancelar agendamento, botão solicitar para participar,
-        listagem de solicitações de participação com respectivos botões de aprovar ou reprovar.
-    -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
