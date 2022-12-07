@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
+import com.example.sahce_ufcg.util.Util;
 
 import java.util.Comparator;
 import java.util.List;
@@ -40,15 +42,12 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
         availableView = findViewById(R.id.available_scheduling_details_activity);
         scheduleOwnerView = findViewById(R.id.schedule_owner_scheduling_details_activity);
         daysOfWeekLayout = findViewById(R.id.days_of_week_layout_scheduling_details_activity);
-        scheduleButton = findViewById(R.id.schedule_button_activity_scheduling_details);
-        cancelButton = findViewById(R.id.scheduling_cancel_button_activity_scheduling_details);
-        participateButton = findViewById(R.id.participate_button_activity_scheduling_details);
-
         placeNameView.setText(schedule.getPlaceName());
         availableView.setText(schedule.isAvailable() ? "Disponível" : "Indisponível");
         scheduleOwnerView.setText(schedule.getOwnerEmail() != null ? schedule.getOwnerEmail() : "");
         setDaysOfWeekLayout(schedule);
 
+        setScheduleButton();
     }
 
     public void setSchedule(){
@@ -82,5 +81,18 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
                     daysOfWeekLayout.addView(dayCard);
                 }
         );
+    }
+
+    public void setScheduleButton(){
+        scheduleButton = findViewById(R.id.schedule_button_activity_scheduling_details);
+        scheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userEmail = Util.getEmailPreferences(getBaseContext());
+                String token = Util.getTokenPreferences(getBaseContext());
+                long scheduleId = schedule.getId();
+                System.out.println(userEmail + " - " + token + " - " + scheduleId);
+            }
+        });
     }
 }

@@ -80,7 +80,9 @@ public class SchedulingListingAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void setDaysOfWeekLayout(Context context, LinearLayout daysOfWeekLayout, List<TimesByDay> timesByDayList){
+    public void setDaysOfWeekLayout(
+            Context context, LinearLayout daysOfWeekLayout, List<TimesByDay> timesByDayList
+    ){
         timesByDayList.forEach(timesByDay -> {
             LinearLayout dayOfWeekCard = (LinearLayout) LayoutInflater.from(context)
                     .inflate(R.layout.day_of_week_card_of_scheduling_card, daysOfWeekLayout, false);

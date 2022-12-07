@@ -65,12 +65,13 @@ public class Mapper {
         List<Schedule> result = new ArrayList<>();
         dtoList.forEach(
                 dto -> result.add(new Schedule(
+                    dto.getId(),
                     LocalDate.parse(dto.getInitialDate()),
                     LocalDate.parse(dto.getFinalDate()),
                     dto.getTimesByDayList(),
                     dto.getPlaceName(),
                     dto.getOwnerEmail(),
-                    dto.getAvailable()
+                    dto.isAvailable()
                 ))
         );
         return result;

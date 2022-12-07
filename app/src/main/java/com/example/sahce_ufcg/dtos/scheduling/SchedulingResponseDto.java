@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class SchedulingResponseDto {
+    @Json(name = "id")
+    private long id;
     @Json(name = "placeName")
     private String placeName;
     @Json(name = "initialDate")
@@ -22,15 +24,20 @@ public class SchedulingResponseDto {
 
 
     public SchedulingResponseDto(
-            String placeName, String initialDate, String finalDate,
+            long id, String placeName, String initialDate, String finalDate,
             String ownerEmail, boolean available, List<TimesByDay> timesByDayList
     ){
+        this.id = id;
         this.placeName = placeName;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
         this.ownerEmail = ownerEmail;
         this.available = available;
         this.timesByDayList = timesByDayList;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getPlaceName() {
@@ -49,7 +56,7 @@ public class SchedulingResponseDto {
         return ownerEmail;
     }
 
-    public boolean getAvailable() {
+    public boolean isAvailable() {
         return available;
     }
 
