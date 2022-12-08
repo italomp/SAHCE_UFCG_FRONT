@@ -283,7 +283,12 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        System.out.println(response.code());
+                        if(response.isSuccessful()){
+                            Util.showMessage(getBaseContext(), "Hoŕario salvo com sucesso.");
+                        }
+                        else{
+                            Util.showMessage(getBaseContext(), "Http Status Code: " + response.code());
+                        }
                     }
 
                     @Override
