@@ -16,10 +16,15 @@ import android.widget.TextView;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
 import com.example.sahce_ufcg.models.TimesByDay;
+import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;
 
 import java.util.Comparator;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SchedulingDetailsActivity extends AppCompatActivity {
     TextView placeNameView, availableView, scheduleOwnerView;
@@ -88,11 +93,36 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userEmail = Util.getEmailPreferences(getBaseContext());
-                String token = Util.getTokenPreferences(getBaseContext());
-                long scheduleId = schedule.getId();
-                System.out.println(userEmail + " - " + token + " - " + scheduleId);
+                sendCreateSchedulingRequest();
             }
         });
+    }
+
+    public void sendCreateSchedulingRequest(){
+        String userEmail = Util.getEmailPreferences(getBaseContext());
+        String token = Util.getTokenPreferences(getBaseContext());
+        long scheduleId = schedule.getId();
+
+        ApiService.getScheduleService().createScheduling(scheduleId, userEmail, token).enqueue(
+                new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        System.out.println(response.code());
+                        if(response.isSuccessful()){
+                            scheduleButton.setText("Agendado");
+                            scheduleButton.setBackgroundColor(0xFF00CC00);
+                            scheduleButton.setClickable(false);
+
+                            availableView.setText("Indisponível");
+                            scheduleOwnerView.setText(userEmail);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+
+                    }
+                }
+        );
     }
 }

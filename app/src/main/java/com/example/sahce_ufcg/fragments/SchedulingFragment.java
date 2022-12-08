@@ -56,8 +56,7 @@ public class SchedulingFragment extends Fragment {
     }
 
     public void setSchedulingListing(){
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
-                getContext(), LinearLayoutManager.VERTICAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         adapter = new SchedulingListingAdapter();
         schedulingListing = view.findViewById(R.id.scheduling_listing);
         schedulingListing.setHasFixedSize(true);
@@ -94,7 +93,7 @@ public class SchedulingFragment extends Fragment {
 
     public void getSchedulingList(String placeName, String rangeStart, String rangeEnd){
         ApiService.getScheduleService()
-                .getSchedulingListByPlaceNameAndPeriodRange(placeName, rangeStart, rangeEnd)
+                .getSchedulingListByPlaceNameAndPeriodRange(placeName, rangeStart, rangeEnd, token)
                 .enqueue(new Callback<List<SchedulingResponseDto>>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override

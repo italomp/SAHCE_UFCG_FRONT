@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ScheduleService {
@@ -24,9 +25,15 @@ public interface ScheduleService {
             @Query("placeName") String placeName,
             @Header("Authorization") String token);
 
-    @GET("/v1/anonymous/schedulings")
+    @GET("/v1/protected/scheduling")
     Call<List<SchedulingResponseDto>> getSchedulingListByPlaceNameAndPeriodRange(
             @Query("placeName") String placeName,
             @Query("initialDate") String initialDate,
-            @Query("finalDate") String finalDate);
+            @Query("finalDate") String finalDate,
+            @Header("Authorization") String token);
+
+    @PUT("/v1/protected/scheduling")
+    Call<Void> createScheduling(@Query("scheduleId") long scheduleId,
+                                @Query("userEmail") String userEmail,
+                                @Header("Authorization") String token);
 }

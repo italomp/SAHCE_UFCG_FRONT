@@ -15,7 +15,6 @@ public class Schedule implements Serializable{
 
     public Schedule(LocalDate initialDate, LocalDate finalDate,
                     List<TimesByDay> timesByDayLit, String placeName) {
-        this.id = id;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
         this.timesByDayLit = timesByDayLit;

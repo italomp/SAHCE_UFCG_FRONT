@@ -113,11 +113,11 @@ public class SchedulingListingAdapter extends RecyclerView.Adapter<RecyclerView.
     public void setAvailableView(TextView availableView, Boolean available){
         if(available){
             availableView.setText("Disponível");
-            availableView.setTextColor(R.color.green);
+            availableView.setTextColor(0xFF00CC00);
         }
         else{
             availableView.setText("Indisponível");
-            availableView.setTextColor(R.color.red);
+            availableView.setTextColor(0xFFFF0000);
         }
     }
 
