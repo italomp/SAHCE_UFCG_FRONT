@@ -7,153 +7,161 @@
     android:layout_marginBottom="@dimen/bottom_nav_height"
     tools:context=".activities.ScheduleRegisterActivity">
 
-    <TextView
-        android:id="@+id/header_appointment_times_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/header_schedule_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/headers_style"
-        />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/place_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_appointment_times_register"
-        app:layout_constraintBottom_toTopOf="@id/days_of_week_layout">
-
-        <TextView
-            android:id="@+id/spinner_place_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/spinner_place"
-            android:text="@string/spinner_place_label"
-            style="@style/header_2"/>
-
-        <Spinner
-            android:id="@+id/spinner_place"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description_spinner_place"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/spinner_place_label" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/days_of_week_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/place_layout"
-        app:layout_constraintBottom_toTopOf="@id/period_layout">
-        <TextView
-            android:id="@+id/days_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dias da Semana"
-            style="@style/header_2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/selected_days_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/days_label"
-            app:layout_constraintBottom_toTopOf="@id/spinner_day_of_week"
-            android:padding="8dp"/>
+            android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/spinner_day_of_week"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/description_spinner_day_of_week"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/selected_days_layout"
-            app:layout_constraintEnd_toStartOf="@id/add_day_of_week_button" />
+            <TextView
+                android:id="@+id/header_appointment_times_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/header_schedule_register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/headers_style"
+                />
 
-        <ImageButton
-            android:id="@+id/add_day_of_week_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            app:tint="@color/white"
-            android:backgroundTint="@color/background_buttons"
-            app:layout_constraintStart_toEndOf="@id/spinner_day_of_week"
-            app:layout_constraintTop_toBottomOf="@id/selected_days_layout" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/place_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_appointment_times_register"
+                app:layout_constraintBottom_toTopOf="@id/days_of_week_layout">
 
-        <LinearLayout
-            android:id="@+id/time_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_day_of_week_button"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/spinner_place_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/spinner_place"
+                    android:text="@string/spinner_place_label"
+                    style="@style/header_2"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/period_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_of_week_layout"
-        >
+                <Spinner
+                    android:id="@+id/spinner_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_spinner_place"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/spinner_place_label" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/period_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dates_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/input_period_start"
-            style="@style/header_2"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/days_of_week_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/place_layout"
+                app:layout_constraintBottom_toTopOf="@id/period_layout">
+                <TextView
+                    android:id="@+id/days_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dias da Semana"
+                    style="@style/header_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <LinearLayout
+                    android:id="@+id/selected_days_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/days_label"
+                    app:layout_constraintBottom_toTopOf="@id/spinner_day_of_week"
+                    android:padding="8dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner_day_of_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/description_spinner_day_of_week"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/selected_days_layout"
+                    app:layout_constraintEnd_toStartOf="@id/add_day_of_week_button" />
+
+                <ImageButton
+                    android:id="@+id/add_day_of_week_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add"
+                    app:tint="@color/white"
+                    android:backgroundTint="@color/background_buttons"
+                    app:layout_constraintStart_toEndOf="@id/spinner_day_of_week"
+                    app:layout_constraintTop_toBottomOf="@id/selected_days_layout" />
+
+                <LinearLayout
+                    android:id="@+id/time_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/add_day_of_week_button"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/period_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/days_of_week_layout"
+                >
+
+                <TextView
+                    android:id="@+id/period_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dates_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/input_period_start"
+                    style="@style/header_2"/>
 
 
-        <EditText
-            android:id="@+id/input_period_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/initial_date_or_time_input"
-            android:inputType="date"
-            android:focusable="false"
-            android:background="@drawable/input_fields_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/period_label"
-            app:layout_constraintEnd_toStartOf="@id/input_period_end"
-            android:layout_marginStart="8dp"/>
+                <EditText
+                    android:id="@+id/input_period_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/initial_date_or_time_input"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:background="@drawable/input_fields_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/period_label"
+                    app:layout_constraintEnd_toStartOf="@id/input_period_end"
+                    android:layout_marginStart="8dp"/>
 
 
 
-        <EditText
-            android:id="@+id/input_period_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/final_date_or_time_input"
-            android:inputType="date"
-            android:focusable="false"
-            android:background="@drawable/input_fields_background"
-            app:layout_constraintStart_toEndOf="@id/input_period_start"
-            app:layout_constraintTop_toBottomOf="@id/period_label"
-            android:layout_marginStart="8dp"/>
+                <EditText
+                    android:id="@+id/input_period_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/final_date_or_time_input"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:background="@drawable/input_fields_background"
+                    app:layout_constraintStart_toEndOf="@id/input_period_start"
+                    app:layout_constraintTop_toBottomOf="@id/period_label"
+                    android:layout_marginStart="8dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/send_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/period_layout"
-        android:text="Cadastrar"/>
-
-
+            <Button
+                android:id="@+id/send_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/period_layout"
+                android:text="Cadastrar"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

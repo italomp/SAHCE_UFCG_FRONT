@@ -39,7 +39,6 @@ import com.google.android.material.timepicker.TimeFormat;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,14 +59,14 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     int labelCount = 0;
     private Button sendButton;
     private Map<DayOfWeek, TimesByDay> timesByDayMap;
-    private List<DayOfWeek> daysList; // double daysStack length
+    private Map<String, CardView> linkBetweenDaysOfWeekAndDynamicInputTimesCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_register);
         timesByDayMap = new HashMap<>();
-        daysList = new ArrayList<>();
+        linkBetweenDaysOfWeekAndDynamicInputTimesCard = new HashMap<>();
         getToken();
         setViewsAndLayouts();
     }
@@ -137,39 +136,24 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         addDayOfWeekButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(1);
-                addDayInputCard();
-                System.out.println(2);
-                addTimeInputCard();
-                System.out.println(3);
+                String selectedDay = spinnerDayOfWeek.getSelectedItem().toString();
+                addDayInputCard(selectedDay);
+                addTimeInputCard(selectedDay);
             }
         });
     }
 
-    public void addDayInputCard(){
+    public void addDayInputCard(String selectedDay){
         CardView dayCard = (CardView) LayoutInflater
                 .from(getApplicationContext())
                 .inflate(R.layout.day_of_week_card_of_schedule_register_screen, selectedDaysLayout, false);
         TextView dayView = dayCard.findViewById(R.id.text_day_output);
-        String selectDay = spinnerDayOfWeek.getSelectedItem().toString();
-        dayView.setText(selectDay);
+        dayView.setText(selectedDay);
         selectedDaysLayout.addView(dayCard);
-        storageSelectedDay(selectDay);
-    }
-
-    public void storageSelectedDay(String selectDay){
-        DayOfWeek day = fromStringToDayOfWeek(selectDay);
-        // O dia é adicionado 2x, para atender a estratégia de controle dos horários, inicial
-        // e final (dois horários para cada dia), do dia.
-        daysList.add(day);
-        daysList.add(day);
-
-        timesByDayMap.put(day, new TimesByDay(day));
-        System.out.println("storageSelectedDay and stack.size is " + daysList.size());
     }
 
     @SuppressLint("SetTextI18n")
-    public void addTimeInputCard(){
+    public void addTimeInputCard(String selectedDay){
         CardView inputTimeCard = (CardView) LayoutInflater
                 .from(getApplicationContext())
                 .inflate(R.layout.time_input_card, timeLayout, false);
@@ -178,9 +162,11 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         EditText inputTimeStart = inputTimeCard.findViewById(R.id.start_time);
         EditText inputTimeEnd = inputTimeCard.findViewById(R.id.end_time);
 
-        label.setText("Horário do " + ++labelCount + "º dia" );
+        label.setText("Horário do " + ++labelCount + "º dia.");
         setTimeInput(inputTimeStart, "Horário Inicial");
         setTimeInput(inputTimeEnd, "Horário Final");
+
+        linkBetweenDaysOfWeekAndDynamicInputTimesCard.put(selectedDay, inputTimeCard);
 
         timeLayout.addView(inputTimeCard);
     }
@@ -237,36 +223,12 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String hour = picker.getHour() == 0 ? "00" : picker.getHour() + "";
-                String minute = picker.getMinute() == 0 ? "00" : picker.getMinute() + "";
+                String hour = picker.getHour() < 10 ? "0" + picker.getHour() : "" + picker.getHour();
+                String minute = picker.getMinute() < 10 ? "0" + picker.getMinute() : "" + picker.getMinute();
                 String selectTime = hour + ":" + minute;
                 inputEditText.setText(selectTime);
-                System.out.println("antes do storageTimesOfDay");
-                storageTimesOfDay(
-                        inputEditText.getId(),
-                        Integer.parseInt(hour),
-                        Integer.parseInt(minute));
-                System.out.println("depois do storageTimesOfDay");
             }
         });
-    }
-
-    public void storageTimesOfDay(int inputViewId, int hour, int minute){
-        DayOfWeek day = daysList.get(0);
-        if(daysList.size() == 1){
-            daysList.remove(0);
-        }
-        else{
-            for(int i = 1; i < daysList.size(); i++){
-                DayOfWeek curr = daysList.get(i);
-                daysList.set(i - 1, curr);
-            }
-        }
-        TimesByDay timeByDay = timesByDayMap.get(day);
-        if (inputViewId == R.id.start_time)
-            timeByDay.setInitialTime(LocalTime.of(hour, minute));
-        else
-            timeByDay.setFinalTime(LocalTime.of(hour, minute));
     }
 
     public void setSendButton(){
@@ -277,6 +239,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 String placeName = spinnerPlace.getSelectedItem().toString();
                 String initialDate = inputPeriodStart.getText().toString();
                 String finalDate = inputPeriodEnd.getText().toString();
+                fillTimesByDayMap();
 
                 sendRegisterRequest(new ScheduleRequestDto(
                     formatInputDateToLocalDate(initialDate),
@@ -286,6 +249,33 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    public void fillTimesByDayMap(){
+        linkBetweenDaysOfWeekAndDynamicInputTimesCard.keySet().forEach(
+                key -> {
+                    DayOfWeek timesByDayKey = fromStringToDayOfWeek(key);
+                    CardView timesByDayCard =  linkBetweenDaysOfWeekAndDynamicInputTimesCard.get(key);
+                    EditText inputTimeStart = timesByDayCard.findViewById(R.id.start_time);
+                    EditText inputTimeEnd = timesByDayCard.findViewById(R.id.end_time);
+
+                    String strInitialTime = inputTimeStart.getText().toString();
+                    String strFinalTime = inputTimeEnd.getText().toString();
+
+                    String hourOfInitialTime = strInitialTime.split(":")[0];
+                    String minuteOfInitialTime = strInitialTime.split(":")[1];
+                    String hourOfFinalTime = strFinalTime.split(":")[0];
+                    String minuteOfFinalTime = strFinalTime.split(":")[1];
+
+                    DayOfWeek day = timesByDayKey;
+                    LocalTime initialTime = LocalTime.of(Integer.parseInt(hourOfInitialTime), Integer.parseInt(minuteOfInitialTime));
+                    LocalTime finalTime = LocalTime.of(Integer.parseInt(hourOfFinalTime), Integer.parseInt(minuteOfFinalTime));
+
+                    TimesByDay timesByDayValue = new TimesByDay(day, initialTime, finalTime);
+
+                    timesByDayMap.put(timesByDayKey, timesByDayValue);
+                }
+        );
     }
 
     public void sendRegisterRequest(ScheduleRequestDto scheduleRequestDto){
@@ -298,6 +288,7 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
+                        Util.showMessage(getBaseContext(), "Falha de comunicação");
                         t.printStackTrace();
                     }
                 }
