@@ -51,11 +51,12 @@
 
     <!-- Labels -->
     <string name="spinner_place_label">Espaço</string>
-    <string name="dates_label">Datas</string>
+    <string name="dates_label">Datas do Horário</string>
     <string name="period_label_schedule_card">Período:</string>
     <string name="times_first_day_label">Horários do 1º Dia</string>
     <string name="times_second_day_label">Horários do 2º Dia</string>
-
+    <string name="release_date_internal_community">Liberação Para Comunidade Interna</string>
+    <string name="release_date_external_community">Liberação Para Comunidade Externa</string>
     <!-- Hints -->
     <string name="initial_date_or_time_input">Inicial</string>
     <string name="final_date_or_time_input">Final</string>

@@ -130,6 +130,10 @@
                     android:id="@+id/input_period_start"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:minHeight="30dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
                     android:hint="@string/initial_date_or_time_input"
                     android:inputType="date"
                     android:focusable="false"
@@ -140,11 +144,14 @@
                     android:layout_marginStart="8dp"/>
 
 
-
                 <EditText
                     android:id="@+id/input_period_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:minHeight="30dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
                     android:hint="@string/final_date_or_time_input"
                     android:inputType="date"
                     android:focusable="false"
@@ -155,13 +162,87 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/internal_community_release_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/period_layout"
+                >
+
+                <TextView
+                    android:id="@+id/internal_community_release_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/release_date_internal_community"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/internal_community_release_input"
+                    style="@style/header_2"/>
+
+
+                <EditText
+                    android:id="@+id/internal_community_release_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:minHeight="30dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:hint="@string/initial_date_or_time_input"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:background="@drawable/input_fields_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/internal_community_release_label"
+                    android:layout_marginStart="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/external_community_release_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/internal_community_release_container"
+                >
+
+                <TextView
+                    android:id="@+id/external_community_release_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/release_date_external_community"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/external_community_release_input"
+                    style="@style/header_2"/>
+
+
+                <EditText
+                    android:id="@+id/external_community_release_input"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="120dp"
+                    android:minHeight="30dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
+                    android:hint="@string/initial_date_or_time_input"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:background="@drawable/input_fields_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/external_community_release_label"
+                    android:layout_marginStart="8dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <Button
                 android:id="@+id/send_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/period_layout"
-                android:text="Cadastrar"/>
+                app:layout_constraintTop_toBottomOf="@+id/external_community_release_container"
+                android:text="Cadastrar"
+                android:backgroundTint="@color/background_buttons"
+                android:layout_marginHorizontal="8dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

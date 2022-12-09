@@ -9,6 +9,8 @@ import java.util.Map;
 public class ScheduleRequestDto {
     private LocalDate initialDate;
     private LocalDate finalDate;
+    private LocalDate releaseInternalCommunity;
+    private LocalDate releaseExternalCommunity;
     private Map<DayOfWeek, TimesByDay> timesByDayMap;
     private String placeName;
     private String ownerEmail;
@@ -23,11 +25,14 @@ public class ScheduleRequestDto {
     }
 
     public ScheduleRequestDto(LocalDate initialDate, LocalDate finalDate,
-                    Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName) {
+                              LocalDate releaseInternalCommunity, LocalDate releaseExternalCommunity,
+                              Map<DayOfWeek, TimesByDay> timesByDayMap, String placeName) {
         this.initialDate = initialDate;
         this.finalDate = finalDate;
         this.timesByDayMap = timesByDayMap;
         this.placeName = placeName;
+        this.releaseInternalCommunity = releaseInternalCommunity;
+        this.releaseExternalCommunity = releaseExternalCommunity;
         this.ownerEmail = null;
     }
 

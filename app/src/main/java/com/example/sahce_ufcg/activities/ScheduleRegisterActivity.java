@@ -50,13 +50,14 @@ import retrofit2.Response;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class ScheduleRegisterActivity extends AppCompatActivity {
-    Spinner spinnerPlace;
-    String token;
-    Spinner spinnerDayOfWeek;
-    ImageButton addDayOfWeekButton;
-    LinearLayout selectedDaysLayout, timeLayout;
+    private Spinner spinnerPlace;
+    private String token;
+    private Spinner spinnerDayOfWeek;
+    private ImageButton addDayOfWeekButton;
+    private LinearLayout selectedDaysLayout, timeLayout;
     private EditText inputPeriodStart, inputPeriodEnd;
-    int labelCount = 0;
+    private EditText inputReleaseInternalCommunity, inputReleaseExternalCommunity;
+    private int labelCount = 0;
     private Button sendButton;
     private Map<DayOfWeek, TimesByDay> timesByDayMap;
     private Map<String, CardView> linkBetweenDaysOfWeekAndDynamicInputTimesCard;
@@ -174,8 +175,12 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
     private void setPeriodInputs(){
         inputPeriodStart = findViewById(R.id.input_period_start);
         inputPeriodEnd = findViewById(R.id.input_period_end);
+        inputReleaseInternalCommunity = findViewById(R.id.internal_community_release_input);
+        inputReleaseExternalCommunity = findViewById(R.id.external_community_release_input);
         setInputDate(inputPeriodStart, "Inicial");
         setInputDate(inputPeriodEnd, "Final");
+        setInputDate(inputReleaseInternalCommunity, "Data");
+        setInputDate(inputReleaseExternalCommunity, "Data");
     }
 
     public void setInputDate(EditText inputDate, String pickerFlag){
@@ -239,11 +244,15 @@ public class ScheduleRegisterActivity extends AppCompatActivity {
                 String placeName = spinnerPlace.getSelectedItem().toString();
                 String initialDate = inputPeriodStart.getText().toString();
                 String finalDate = inputPeriodEnd.getText().toString();
+                String releaseInternalCommunity = inputReleaseInternalCommunity.getText().toString();
+                String releaseExternalCommunity = inputReleaseExternalCommunity.getText().toString();
                 fillTimesByDayMap();
 
                 sendRegisterRequest(new ScheduleRequestDto(
                     formatInputDateToLocalDate(initialDate),
                     formatInputDateToLocalDate(finalDate),
+                    formatInputDateToLocalDate(releaseInternalCommunity),
+                    formatInputDateToLocalDate(releaseExternalCommunity),
                     timesByDayMap,
                     placeName)
                 );
