@@ -8,6 +8,8 @@ public class Schedule implements Serializable{
     private long id;
     private LocalDate initialDate;
     private LocalDate finalDate;
+    private LocalDate releaseInternalCommunity;
+    private LocalDate releaseExternalCommunity;
     private List<TimesByDay> timesByDayLit;
     private String placeName;
     private String ownerEmail;
@@ -23,11 +25,15 @@ public class Schedule implements Serializable{
         this.available = true;
     }
 
-    public Schedule(long id, LocalDate initialDate, LocalDate finalDate, List<TimesByDay> timesByDayLit,
-                    String placeName, String ownerEmail, boolean available) {
+    public Schedule(long id, LocalDate initialDate, LocalDate finalDate,
+                    LocalDate releaseInternalCommunity, LocalDate releaseExternalCommunity,
+                    List<TimesByDay> timesByDayLit, String placeName,
+                    String ownerEmail, boolean available) {
         this.id = id;
         this.initialDate = initialDate;
         this.finalDate = finalDate;
+        this.releaseInternalCommunity = releaseInternalCommunity;
+        this.releaseExternalCommunity = releaseExternalCommunity;
         this.timesByDayLit = timesByDayLit;
         this.placeName = placeName;
         this.ownerEmail = ownerEmail;
@@ -86,5 +92,21 @@ public class Schedule implements Serializable{
 
     public long getId() {
         return id;
+    }
+
+    public LocalDate getReleaseInternalCommunity() {
+        return releaseInternalCommunity;
+    }
+
+    public void setReleaseInternalCommunity(LocalDate releaseInternalCommunity) {
+        this.releaseInternalCommunity = releaseInternalCommunity;
+    }
+
+    public LocalDate getReleaseExternalCommunity() {
+        return releaseExternalCommunity;
+    }
+
+    public void setReleaseExternalCommunity(LocalDate releaseExternalCommunity) {
+        this.releaseExternalCommunity = releaseExternalCommunity;
     }
 }

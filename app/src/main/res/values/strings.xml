@@ -4,6 +4,9 @@
     <!-- Buttons -->
     <string name="btn_login">Login</string>
     <string name="btn_send">Enviar</string>
+    <string name="btn_schedule">Agendar</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_participate">Participar</string>
 
     <!-- Input Fields -->
     <string name="field_name">Nome</string>
@@ -37,6 +40,9 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="place_name_label">Espaço</string>
+    <string name="days_and_times_label">Dias e Horários</string>
+    <string name="schedule_owner_label">Dono</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -52,7 +58,7 @@
     <!-- Labels -->
     <string name="spinner_place_label">Espaço</string>
     <string name="dates_label">Datas do Horário</string>
-    <string name="period_label_schedule_card">Período:</string>
+    <string name="period_label_schedule_card">Período</string>
     <string name="times_first_day_label">Horários do 1º Dia</string>
     <string name="times_second_day_label">Horários do 2º Dia</string>
     <string name="release_date_internal_community">Liberação Para Comunidade Interna</string>

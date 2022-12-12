@@ -10,7 +10,8 @@
 
     <color name="background_fields">#F8F8FF</color>
     <color name="header_text">#2E1F74</color>
-    <color name="background_buttons">#2E1F74</color>
+    <color name="background_buttons">#2E1F74</color>2E1F74
+    <color name="background_buttons_opacity">#CBC3EF</color>
     <color name="azul_claro_ufcg">#028cd6</color>
 
     <color name="red">#FFFF0000</color>

@@ -68,6 +68,8 @@ public class Mapper {
                     dto.getId(),
                     LocalDate.parse(dto.getInitialDate()),
                     LocalDate.parse(dto.getFinalDate()),
+                    LocalDate.parse(dto.getReleaseInternalCommunity()),
+                    LocalDate.parse(dto.getReleaseExternalCommunity()),
                     dto.getTimesByDayList(),
                     dto.getPlaceName(),
                     dto.getOwnerEmail(),

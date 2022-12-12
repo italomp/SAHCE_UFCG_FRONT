@@ -1,9 +1,7 @@
 package com.example.sahce_ufcg.activities;
 
+import static com.example.sahce_ufcg.util.DateMapper.formatAmericanDateToBrazilianFormat;
 import static com.example.sahce_ufcg.util.DateMapper.fromDayOfWeekToString;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.Schedule;
@@ -27,7 +28,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SchedulingDetailsActivity extends AppCompatActivity {
-    TextView placeNameView, availableView, scheduleOwnerView;
+    TextView placeNameView, availableView, scheduleOwnerView, periodView;
+    TextView releaseInternalCommunityView, releaseExternalCommunityView;
     LinearLayout daysOfWeekLayout;
     Button scheduleButton, cancelButton, participateButton;
     Schedule schedule;
@@ -43,16 +45,56 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setViews(){
-        placeNameView = findViewById(R.id.place_name_scheduling_details_activity);
-        availableView = findViewById(R.id.available_scheduling_details_activity);
-        scheduleOwnerView = findViewById(R.id.schedule_owner_scheduling_details_activity);
-        daysOfWeekLayout = findViewById(R.id.days_of_week_layout_scheduling_details_activity);
-        placeNameView.setText(schedule.getPlaceName());
-        availableView.setText(schedule.isAvailable() ? "Disponível" : "Indisponível");
-        scheduleOwnerView.setText(schedule.getOwnerEmail() != null ? schedule.getOwnerEmail() : "");
+        setPlaceNameView();
+        setPeriodView();
+        setReleaseInternalCommunityView();
+        setReleaseExternalCommunityView();
         setDaysOfWeekLayout(schedule);
-
+        setScheduleOwnerView();
+        setAvailableView();
         setScheduleButton();
+    }
+
+    public void setPeriodView(){
+        periodView = findViewById(R.id.schedule_period);
+        String initialDate = formatAmericanDateToBrazilianFormat(schedule.getInitialDate());
+        String finalDate = formatAmericanDateToBrazilianFormat(schedule.getFinalDate());
+        String period = initialDate + " - " + finalDate;
+        periodView.setText(period);
+    }
+
+    public void setReleaseInternalCommunityView(){
+        releaseInternalCommunityView = findViewById(R.id.release_date_internal_community);
+        String releaseDate = formatAmericanDateToBrazilianFormat(schedule.getReleaseInternalCommunity());
+        releaseInternalCommunityView.setText(releaseDate);
+    }
+
+    public void setReleaseExternalCommunityView(){
+        releaseExternalCommunityView = findViewById(R.id.release_date_external_community);
+        String releaseDate = formatAmericanDateToBrazilianFormat(schedule.getReleaseExternalCommunity());
+        releaseExternalCommunityView.setText(releaseDate);
+    }
+
+    public void setPlaceNameView(){
+        placeNameView = findViewById(R.id.place_name_scheduling);
+        placeNameView.setText(schedule.getPlaceName());
+    }
+
+    public void setAvailableView(){
+        availableView = findViewById(R.id.available_scheduling_details_activity);
+        if(schedule.isAvailable()){
+            availableView.setText("Disponível");
+            availableView.setTextColor(0xFF00CC00);
+        }
+        else{
+            availableView.setText("Indisponível");
+            availableView.setTextColor(0xFFFF0000);
+        }
+    }
+
+    public void setScheduleOwnerView(){
+        scheduleOwnerView = findViewById(R.id.schedule_owner);
+        scheduleOwnerView.setText(schedule.getOwnerEmail() != null ? schedule.getOwnerEmail() : " - ");
     }
 
     public void setSchedule(){
@@ -61,6 +103,7 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDaysOfWeekLayout(Schedule schedule) {
+        daysOfWeekLayout = findViewById(R.id.days_of_week_layout);
         List<TimesByDay> timesByDayList = schedule.getTimesByDayLit();
         timesByDayList.sort(new Comparator<TimesByDay>() {
             @Override
@@ -89,13 +132,21 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
     }
 
     public void setScheduleButton(){
-        scheduleButton = findViewById(R.id.schedule_button_activity_scheduling_details);
-        scheduleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendCreateSchedulingRequest();
-            }
-        });
+        scheduleButton = findViewById(R.id.schedule_button);
+
+        if(!schedule.isAvailable()){
+            scheduleButton.setClickable(false);
+            scheduleButton.setBackgroundColor(0xFFCBC3EF);
+        }
+        else{
+            scheduleButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendCreateSchedulingRequest();
+                }
+            });
+        }
+
     }
 
     public void sendCreateSchedulingRequest(){
@@ -109,18 +160,23 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         System.out.println(response.code());
                         if(response.isSuccessful()){
-                            scheduleButton.setText("Agendado");
-                            scheduleButton.setBackgroundColor(0xFF00CC00);
                             scheduleButton.setClickable(false);
+                            scheduleButton.setBackgroundColor(0xFFCBC3EF);
 
                             availableView.setText("Indisponível");
+                            availableView.setTextColor(0xFFFF0000);
                             scheduleOwnerView.setText(userEmail);
+                        }
+                        else{
+                            Util.showMessage(
+                                    getBaseContext(),
+                                    "Http Status Code: " + response.code());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Void> call, Throwable t) {
-
+                        Util.showMessage(getBaseContext(), "Falha de Comunicação");
                     }
                 }
         );

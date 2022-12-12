@@ -12,75 +12,154 @@
     -->
 
     <TextView
-        android:id="@+id/place_name_scheduling_details_activity"
+        android:id="@+id/name_place_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Place Name"
+        android:text="@string/place_name_label"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/place_name_scheduling"/>
+
+    <TextView
+        android:id="@+id/place_name_scheduling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_place_label"/>
+
+    <TextView
+        android:id="@+id/schedule_period_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/period_label_schedule_card"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_name_scheduling"
+        app:layout_constraintBottom_toTopOf="@id/schedule_period"/>
+
+    <TextView
+        android:id="@+id/schedule_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schedule_period_label"/>
+
+    <TextView
+        android:id="@+id/release_date_internal_community_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/release_date_internal_community"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schedule_period" />
+
+    <TextView
+        android:id="@+id/release_date_internal_community"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community_label"/>
+
+    <TextView
+        android:id="@+id/release_date_external_community_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/release_date_external_community"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community" />
+
+    <TextView
+        android:id="@+id/release_date_external_community"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/release_date_external_community_label"/>
+
+    <TextView
+        android:id="@+id/days_of_week_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/days_and_times_label"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/release_date_external_community"/>
 
     <LinearLayout
-        android:id="@+id/days_of_week_layout_scheduling_details_activity"
+        android:id="@+id/days_of_week_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/place_name_scheduling_details_activity"/>
+        app:layout_constraintTop_toBottomOf="@id/days_of_week_label"/>
+
+    <TextView
+        android:id="@+id/schedule_owner_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_owner_label"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/days_of_week_layout"
+        app:layout_constraintBottom_toTopOf="@id/schedule_owner"/>
+
+    <TextView
+        android:id="@+id/schedule_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/schedule_owner_label"/>
 
     <TextView
         android:id="@+id/available_scheduling_details_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Available"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_of_week_layout_scheduling_details_activity"/>
-
-    <TextView
-        android:id="@+id/schedule_owner_scheduling_details_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Owner Email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/available_scheduling_details_activity"/>
+        app:layout_constraintTop_toBottomOf="@id/schedule_owner"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttons_container_scheduling_details_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_owner_scheduling_details_activity">
+        app:layout_constraintTop_toBottomOf="@id/available_scheduling_details_activity">
 
         <Button
-            android:id="@+id/schedule_button_activity_scheduling_details"
+            android:id="@+id/schedule_button"
             android:layout_width="130dp"
             android:minWidth="105dp"
             android:layout_height="wrap_content"
-            android:text="Agendar"
+            android:text="@string/btn_schedule"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/scheduling_cancel_button_activity_scheduling_details"
-            android:layout_marginHorizontal="0dp"/>
+            app:layout_constraintEnd_toStartOf="@id/scheduling_cancel_button"
+            android:layout_marginHorizontal="0dp"
+            android:backgroundTint="@color/background_buttons"/>
 
         <Button
-            android:id="@+id/scheduling_cancel_button_activity_scheduling_details"
+            android:id="@+id/scheduling_cancel_button"
             android:layout_width="130dp"
             android:minWidth="115dp"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
-            app:layout_constraintStart_toEndOf="@id/schedule_button_activity_scheduling_details"
+            android:text="@string/btn_cancel"
+            app:layout_constraintStart_toEndOf="@id/schedule_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/participate_button_activity_scheduling_details"
-            android:layout_marginHorizontal="0dp"/>
+            app:layout_constraintEnd_toStartOf="@id/participate_button"
+            android:layout_marginHorizontal="0dp"
+            android:backgroundTint="@color/background_buttons"/>
 
         <Button
-            android:id="@+id/participate_button_activity_scheduling_details"
+            android:id="@+id/participate_button"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Participar"
-            app:layout_constraintStart_toEndOf="@id/scheduling_cancel_button_activity_scheduling_details"
+            android:text="@string/btn_participate"
+            app:layout_constraintStart_toEndOf="@id/scheduling_cancel_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginHorizontal="0dp"/>
+            android:layout_marginHorizontal="0dp"
+            android:backgroundTint="@color/background_buttons"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
