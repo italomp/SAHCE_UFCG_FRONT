@@ -96,6 +96,7 @@ public class UsersFragment extends Fragment {
                     @Override
                     public void onFailure(Call<List<UserResponseDto>> call, Throwable t) {
                         Util.showMessage(getContext(), "Falha na comunicação");
+                        t.printStackTrace();
                     }
                 }
         );

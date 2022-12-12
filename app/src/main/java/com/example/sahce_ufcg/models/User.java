@@ -9,7 +9,7 @@ public class User implements Serializable {
     private String email;
     private String password;
     private UserType userType;
-    private byte[] documentImage;
+//    private byte[] documentPicture;
 
     public User(String name, String phone, String address, String email, String password) {
         this.name = name;
@@ -31,14 +31,14 @@ public class User implements Serializable {
     }
 
     public User(String name, String phone, String address,
-                String email, String password, UserType userType, byte[] documentImage) {
+                String email, String password, UserType userType, byte[] documentPicture) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.password = password;
         this.userType = userType;
-        this.documentImage = documentImage;
+//        this.documentPicture = documentPicture;
     }
 
     public User(String email, String password){
@@ -97,13 +97,13 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
-    public byte[] getDocumentImage() {
-        return documentImage;
-    }
-
-    public void setDocumentImage(byte[] documentImage) {
-        this.documentImage = documentImage;
-    }
+//    public byte[] getDocumentPicture() {
+//        return documentPicture;
+//    }
+//
+//    public void setDocumentPicture(byte[] documentPicture) {
+//        this.documentPicture = documentPicture;
+//    }
 
     public enum UserType{
         ADMIN, EXTERNAL_USER, INTERNAL_USER

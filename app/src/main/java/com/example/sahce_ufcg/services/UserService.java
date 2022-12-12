@@ -11,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserService {
 
@@ -26,4 +27,7 @@ public interface UserService {
 
     @GET("/v1/admin/users/inactive")
     Call<List<UserResponseDto>> getAllInactiveUsers(@Header("Authorization") String token);
+
+    @GET("/v1/anonymous/users/document")
+    Call<byte[]> getUserDocumentPicture(@Query("userEmail") String userEmail);
 }
