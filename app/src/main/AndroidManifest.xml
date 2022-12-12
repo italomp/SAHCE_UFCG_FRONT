@@ -26,7 +26,7 @@
             android:name=".activities.PlaceRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Dashboard"
+            android:name=".activities.DashboardActivity"
             android:exported="false" />
         <activity
             android:name=".activities.LoginActivity"

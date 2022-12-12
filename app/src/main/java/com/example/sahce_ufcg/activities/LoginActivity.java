@@ -106,6 +106,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToDashboard(){
-        startActivity(new Intent(getApplicationContext(), Dashboard.class));
+        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
     }
 }

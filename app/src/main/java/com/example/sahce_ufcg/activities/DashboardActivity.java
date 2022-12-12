@@ -29,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class Dashboard extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
     private String email, token;
     private BottomNavigationView bottomNavigationView;
 
@@ -55,14 +55,14 @@ public class Dashboard extends AppCompatActivity {
                             setViews(userType);
                         }
                         else{
-                            Util.showMessage(Dashboard.this,
+                            Util.showMessage(DashboardActivity.this,
                                     "Código de estado HTTP: " + response.code());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<UserResponseDto> call, Throwable t) {
-                        Util.showMessage(Dashboard.this, "Falha na requisição");
+                        Util.showMessage(DashboardActivity.this, "Falha na requisição");
                     }
                 }
         );

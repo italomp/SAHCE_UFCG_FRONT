@@ -15,6 +15,6 @@ public interface PlaceService {
     @POST("/v1/admin/places")
     Call<Void> savePlace(@Body Place place, @Header("Authorization") String authorization);
 
-    @GET("/v1/admin/places")
+    @GET("/v1/protected/places")
     Call<List<PlaceResponseDto>> getAll(@Header("Authorization") String authorization);
 }
