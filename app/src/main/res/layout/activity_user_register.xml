@@ -1,118 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="20dp"
-    android:gravity="center">
+    android:paddingBottom="45dp"
+    android:clipToPadding="false"
+    android:clipChildren="false">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/header_user_register"
-        style="@style/headers_style"/>
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:gravity="center">
 
-    <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/name_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/field_name"
-            android:inputType="text"
-            android:background="@drawable/input_fields_background"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/field_phone"
-            android:inputType="number"
-            android:background="@drawable/input_fields_background"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/address_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/field_address"
-            android:inputType="text"
-            android:background="@drawable/input_fields_background"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/field_email"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/input_fields_background"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/field_password"
-            android:inputType="textPassword"
-            android:background="@drawable/input_fields_background"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/internal_community_radio_btn"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/internal_community_radio_btn"/>
-        <RadioButton
-            android:id="@+id/external_community_radio_btn"
+            android:text="@string/header_user_register"
+            style="@style/headers_style"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="84dp"
+            android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_name"
+                android:inputType="text"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="84dp"
+            android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_phone"
+                android:inputType="number"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="84dp"
+            android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/address_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_address"
+                android:inputType="text"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="84dp"
+            android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_email"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="84dp"
+            android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/field_password"
+                android:inputType="textPassword"
+                android:background="@drawable/input_fields_background"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/internal_community_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/internal_community_radio_btn"/>
+            <RadioButton
+                android:id="@+id/external_community_radio_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/external_community_radio_btn"/>
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/document_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/external_community_radio_btn"/>
-    </RadioGroup>
+            android:layout_marginVertical="10dp"/>
 
-    <Button
-        android:id="@+id/send_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_send"
-        android:backgroundTint="@color/background_buttons"/>
-</LinearLayout>
+        <Button
+            android:id="@+id/add_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_add_image"
+            android:backgroundTint="@color/background_buttons"/>
+
+        <Button
+            android:id="@+id/send_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_send"
+            android:backgroundTint="@color/background_buttons"/>
+    </LinearLayout>
+</ScrollView>
