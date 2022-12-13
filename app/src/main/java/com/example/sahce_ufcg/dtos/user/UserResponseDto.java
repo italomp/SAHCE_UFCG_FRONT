@@ -16,18 +16,15 @@ public class UserResponseDto {
     private String password;
     @Json(name = "userType")
     private User.UserType userType;
-    @Json(name = "documentPicture")
-    private byte[] documentPicture;
 
     public UserResponseDto(String name, String phone, String address, String email,
-                           String password, User.UserType userType, byte[] documentPicture) {
+                           String password, User.UserType userType) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.email = email;
         this.password = password;
         this.userType = userType;
-        this.documentPicture = documentPicture;
     }
 
     public UserResponseDto() {
@@ -59,9 +56,5 @@ public class UserResponseDto {
 
     public User.UserType getUserType() {
         return userType;
-    }
-
-    public byte[] getDocumentPicture() {
-        return documentPicture;
     }
 }
