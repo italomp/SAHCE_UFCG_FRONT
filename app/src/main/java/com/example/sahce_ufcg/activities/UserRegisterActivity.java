@@ -1,7 +1,6 @@
 package com.example.sahce_ufcg.activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,17 +19,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.sahce_ufcg.R;
-import com.example.sahce_ufcg.dtos.UserResponseDto;
+import com.example.sahce_ufcg.dtos.user.UserResponseDto;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.RealPathUtil;
+import com.example.sahce_ufcg.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.nio.BufferUnderflowException;
-import java.nio.ByteBuffer;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -116,16 +112,15 @@ public class UserRegisterActivity extends AppCompatActivity {
                 String email = emailTextInput.getText().toString();
                 String password = passwordTextInput.getText().toString();
                 User.UserType userType = getUserTypeSelected();
-                byte[] documentImageBytes = mapperFromBitmapFromByteArray(documentImageBitmap);
 
-                User newUser = new User(name, phone, address, email, password, userType, documentImageBytes);
+                User newUser = new User(name, phone, address, email, password, userType);
                 ApiService.getUserService().createUser(newUser).enqueue(new Callback<UserResponseDto>() {
                     @Override
                     public void onResponse(Call<UserResponseDto> call, Response<UserResponseDto> response) {
                         if(response.isSuccessful()){
-                            showMessage("Cadastro realizado com sucesso!");
-                            finish();
-                        } else{
+                            sendDocumentPicture(newUser.getEmail());
+                        }
+                        else{
                             showMessage("Http Status Code: " + response.code());
                         }
                     }
@@ -139,18 +134,37 @@ public class UserRegisterActivity extends AppCompatActivity {
         });
     }
 
-    public byte[] mapperFromBitmapFromByteArray(Bitmap bitmap){
-        int size = bitmap.getRowBytes() * bitmap.getHeight();
-        ByteBuffer b = ByteBuffer.allocate(size);
-        bitmap.copyPixelsToBuffer(b);
-        byte[] byteArray = new byte[size];
-        try {
-            b.get(byteArray, 0, byteArray.length);
-        } catch (BufferUnderflowException e) {
-            e.printStackTrace();
-        }
-        return byteArray;
+    public void sendDocumentPicture(String userEmail){
+        File file = new File(path);
+        System.out.println(file.getName());
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part documentPicturePart = MultipartBody.Part.createFormData(
+                "documentPicture", file.getName(), requestFile);
+        RequestBody userEmailBody = RequestBody.create(
+                MediaType.parse("multipart/form-data"), userEmail);
+
+        ApiService.getUserService()
+                .uploadUserDocumentPicture(documentPicturePart, userEmailBody)
+                .enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        System.out.println("sendDocumentPicture() status code: " + response.code());
+                        if(response.isSuccessful()){
+                            Util.showMessage(getBaseContext(), "A validação acontecerá em até 24h.");
+                            finish();
+                        }
+                        else {
+                            Util.showMessage(getBaseContext(), "Falha ao salva a imagem do usuário.");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Util.showMessage(getBaseContext(), "Falha de comunicação");
+                    }
+                });
     }
+
 
     public User.UserType getUserTypeSelected(){
         if (internalCommunityRadioBtn.isChecked()){

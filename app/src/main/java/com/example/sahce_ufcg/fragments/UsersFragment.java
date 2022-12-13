@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.activities.UserRegisterActivity;
 import com.example.sahce_ufcg.adapters.UserListingAdapter;
-import com.example.sahce_ufcg.dtos.UserResponseDto;
+import com.example.sahce_ufcg.dtos.user.UserResponseDto;
 import com.example.sahce_ufcg.models.User;
 import com.example.sahce_ufcg.services.ApiService;
 import com.example.sahce_ufcg.util.Util;

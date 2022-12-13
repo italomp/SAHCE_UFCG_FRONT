@@ -4,7 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.sahce_ufcg.dtos.UserResponseDto;
+import com.example.sahce_ufcg.dtos.user.UserResponseDto;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 import com.example.sahce_ufcg.dtos.scheduling.SchedulingResponseDto;
 import com.example.sahce_ufcg.models.Place;
