@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SchedulingDetailsActivity">
+    tools:context=".activities.SchedulingDetailsActivity"
+    android:layout_marginHorizontal="8dp">
 
     <!--
         FICA FALTANDO:
@@ -19,14 +21,15 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/place_name_scheduling"/>
+        app:layout_constraintBottom_toTopOf="@id/place_name_scheduling"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <TextView
         android:id="@+id/place_name_scheduling"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name_place_label"/>
+        app:layout_constraintTop_toBottomOf="@id/name_place_label" />
 
     <TextView
         android:id="@+id/schedule_period_label"
@@ -36,14 +39,15 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/place_name_scheduling"
-        app:layout_constraintBottom_toTopOf="@id/schedule_period"/>
+        app:layout_constraintBottom_toTopOf="@id/schedule_period"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <TextView
         android:id="@+id/schedule_period"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_period_label"/>
+        app:layout_constraintTop_toBottomOf="@id/schedule_period_label" />
 
     <TextView
         android:id="@+id/release_date_internal_community_label"
@@ -52,14 +56,15 @@
         android:text="@string/release_date_internal_community"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_period" />
+        app:layout_constraintTop_toBottomOf="@id/schedule_period"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <TextView
         android:id="@+id/release_date_internal_community"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community_label"/>
+        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community_label" />
 
     <TextView
         android:id="@+id/release_date_external_community_label"
@@ -68,14 +73,15 @@
         android:text="@string/release_date_external_community"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community" />
+        app:layout_constraintTop_toBottomOf="@id/release_date_internal_community"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <TextView
         android:id="@+id/release_date_external_community"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/release_date_external_community_label"/>
+        app:layout_constraintTop_toBottomOf="@id/release_date_external_community_label" />
 
     <TextView
         android:id="@+id/days_of_week_label"
@@ -84,7 +90,8 @@
         android:text="@string/days_and_times_label"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/release_date_external_community"/>
+        app:layout_constraintTop_toBottomOf="@id/release_date_external_community"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <LinearLayout
         android:id="@+id/days_of_week_layout"
@@ -92,7 +99,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/days_of_week_label"/>
+        app:layout_constraintTop_toBottomOf="@id/days_of_week_label" />
 
     <TextView
         android:id="@+id/schedule_owner_label"
@@ -102,14 +109,15 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/days_of_week_layout"
-        app:layout_constraintBottom_toTopOf="@id/schedule_owner"/>
+        app:layout_constraintBottom_toTopOf="@id/schedule_owner"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <TextView
         android:id="@+id/schedule_owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_owner_label"/>
+        app:layout_constraintTop_toBottomOf="@id/schedule_owner_label" />
 
     <TextView
         android:id="@+id/available_scheduling_details_activity"
@@ -117,14 +125,16 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/schedule_owner"/>
+        app:layout_constraintTop_toBottomOf="@id/schedule_owner"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttons_container_scheduling_details_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/available_scheduling_details_activity">
+        app:layout_constraintTop_toBottomOf="@id/available_scheduling_details_activity"
+        android:layout_marginTop="@dimen/default_margin_between_screen_components">
 
         <Button
             android:id="@+id/schedule_button"

@@ -22,7 +22,7 @@
         android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+        android:layout_marginBottom="@dimen/default_margin_between_screen_components">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_field"
@@ -37,7 +37,7 @@
         android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+        android:layout_marginBottom="@dimen/default_margin_between_screen_components">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_field"

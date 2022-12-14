@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="84dp"
-        android:layout_marginBottom="@dimen/margin_bottom_user_register_input_fields">
+        android:layout_marginBottom="@dimen/default_margin_between_screen_components">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name_place_field"
