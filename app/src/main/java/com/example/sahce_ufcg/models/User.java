@@ -86,6 +86,10 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
+    public boolean isAdmin(){
+        return userType == UserType.ADMIN;
+    }
+
     public enum UserType{
         ADMIN, EXTERNAL_USER, INTERNAL_USER
     }

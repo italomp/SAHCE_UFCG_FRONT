@@ -78,4 +78,14 @@ public class Mapper {
         );
         return result;
     }
+
+    public static User fromUserResponseDtoToUser(UserResponseDto dto){
+        return new User(
+                dto.getName(),
+                dto.getPhone(),
+                dto.getAddress(),
+                dto.getEmail(),
+                null,
+                dto.getUserType());
+    }
 }

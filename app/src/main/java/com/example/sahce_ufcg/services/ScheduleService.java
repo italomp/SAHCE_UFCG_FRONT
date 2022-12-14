@@ -3,6 +3,7 @@ package com.example.sahce_ufcg.services;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleRequestDto;
 import com.example.sahce_ufcg.dtos.schedule.ScheduleResponseDto;
 import com.example.sahce_ufcg.dtos.scheduling.SchedulingResponseDto;
+import com.example.sahce_ufcg.util.SchedulingOperation;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ public interface ScheduleService {
             @Header("Authorization") String token);
 
     @PUT("/v1/protected/scheduling")
-    Call<Void> createScheduling(@Query("scheduleId") long scheduleId,
+    Call<Void> updateScheduling(@Query("scheduleId") long scheduleId,
                                 @Query("userEmail") String userEmail,
+                                @Query("schedulingOperation") SchedulingOperation schedulingOperation,
                                 @Header("Authorization") String token);
 }

@@ -38,9 +38,6 @@ public interface UserService {
     @GET("/v1/admin/users/inactive")
     Call<List<UserResponseDto>> getAllInactiveUsers(@Header("Authorization") String token);
 
-    @GET("/v1/anonymous/users/document")
-    Call<byte[]> getUserDocumentPicture(@Query("userEmail") String userEmail);
-
     @PUT("/v1/admin/users")
     Call<Void> activeUser(@Query("userEmail") String userEmail,
                           @Header("Authorization") String token);
