@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SchedulingFragment"
-    android:layout_marginBottom="45dp">
+    android:layout_marginBottom="45dp"
+    android:layout_marginHorizontal="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/input_search_container"
@@ -59,7 +60,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toStartOf="@id/input_period_end_layout"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/default_margin_between_screen_components">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_period_start"
@@ -79,7 +81,8 @@
                 app:layout_constraintStart_toEndOf="@id/input_period_start_layout"
                 app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toStartOf="@id/search_btn"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/default_margin_between_screen_components">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_period_end"
@@ -93,14 +96,15 @@
             <ImageButton
                 android:id="@+id/search_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
+                android:layout_height="0dp"
+                android:paddingVertical="5dp"
                 android:src="@drawable/ic_search"
                 app:layout_constraintStart_toEndOf="@id/input_period_end_layout"
                 app:layout_constraintTop_toBottomOf="@id/place_spinner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:backgroundTint="@color/background_buttons"/>
+                android:backgroundTint="@color/background_buttons"
+                android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -110,6 +114,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/default_margin_between_screen_components"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

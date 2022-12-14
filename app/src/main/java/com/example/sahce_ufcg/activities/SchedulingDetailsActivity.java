@@ -50,7 +50,6 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
         token = Util.getTokenPreferences(getBaseContext());
         getUser();
         setSchedule();
-        setViews();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -185,12 +184,13 @@ public class SchedulingDetailsActivity extends AppCompatActivity {
     public void getUser(){
         ApiService.getUserService().getUser(loggedUserEmail, token).enqueue(
                 new Callback<UserResponseDto>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(Call<UserResponseDto> call, Response<UserResponseDto> response) {
                         if (response.isSuccessful()){
                             UserResponseDto dto = response.body();
                             user = Mapper.fromUserResponseDtoToUser(dto);
+                            setViews();
                         }
                         else{
                             Util.showMessage(getBaseContext(), "Http Status Code: " + response.code());
