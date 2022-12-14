@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -39,4 +40,8 @@ public interface UserService {
 
     @GET("/v1/anonymous/users/document")
     Call<byte[]> getUserDocumentPicture(@Query("userEmail") String userEmail);
+
+    @PUT("/v1/admin/users")
+    Call<Void> activeUser(@Query("userEmail") String userEmail,
+                          @Header("Authorization") String token);
 }

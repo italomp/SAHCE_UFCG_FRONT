@@ -12,13 +12,20 @@ import android.widget.TextView;
 
 import com.example.sahce_ufcg.R;
 import com.example.sahce_ufcg.models.User;
+import com.example.sahce_ufcg.services.ApiService;
+import com.example.sahce_ufcg.util.Util;
 import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserDetailsActivity extends AppCompatActivity {
     private TextView userNameView, userPhoneView, userAddressView, userEmailView, userTypeView;
     private ImageView documentPictureView;
     private Button validateButton;
     private User user;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +33,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_details);
 
         user = (User) getIntent().getExtras().getSerializable("user");
+        token = Util.getTokenPreferences(getApplicationContext());
         setViews();
     }
 
@@ -76,8 +84,32 @@ public class UserDetailsActivity extends AppCompatActivity {
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Enviar Request de Validação");
+                sendValidateRequest();
             }
         });
+    }
+
+    public void sendValidateRequest(){
+        ApiService.getUserService().activeUser(user.getEmail(), token).enqueue(
+                new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if(response.isSuccessful()){
+                            Util.showMessage(getBaseContext(), "Validação concluída.");
+                            finish();
+                        }
+                        else{
+                            Util.showMessage(
+                                    getBaseContext(),"Http Status Code: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Util.showMessage(getBaseContext(), "Falha de Comunicação");
+                        t.printStackTrace();
+                    }
+                }
+        );
     }
 }
