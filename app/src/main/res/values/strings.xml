@@ -8,6 +8,7 @@
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_participate">Participar</string>
     <string name="btn_add_image">Adicionar Imagem</string>
+    <string name="btn_validate_user_register">Validar</string>
 
     <!-- Input Fields -->
     <string name="field_name">Nome</string>
@@ -44,6 +45,19 @@
     <string name="place_name_label">Espaço</string>
     <string name="days_and_times_label">Dias e Horários</string>
     <string name="schedule_owner_label">Dono</string>
+    <string name="spinner_place_label">Espaço</string>
+    <string name="dates_label">Datas do Horário</string>
+    <string name="period_label_schedule_card">Período</string>
+    <string name="times_first_day_label">Horários do 1º Dia</string>
+    <string name="times_second_day_label">Horários do 2º Dia</string>
+    <string name="release_date_internal_community">Liberação Para Comunidade Interna</string>
+    <string name="release_date_external_community">Liberação Para Comunidade Externa</string>
+    <string name="user_name_label">Nome</string>
+    <string name="user_phone_label">Telefone</string>
+    <string name="user_address_label">Endereço</string>
+    <string name="user_email_label">Email</string>
+    <string name="user_type_label">Comunidade</string>
+    <string name="user_document_label">Documento</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -56,14 +70,6 @@
         Selector de dia da semana, usado para cadastrar um horário
     </string>
 
-    <!-- Labels -->
-    <string name="spinner_place_label">Espaço</string>
-    <string name="dates_label">Datas do Horário</string>
-    <string name="period_label_schedule_card">Período</string>
-    <string name="times_first_day_label">Horários do 1º Dia</string>
-    <string name="times_second_day_label">Horários do 2º Dia</string>
-    <string name="release_date_internal_community">Liberação Para Comunidade Interna</string>
-    <string name="release_date_external_community">Liberação Para Comunidade Externa</string>
     <!-- Hints -->
     <string name="initial_date_or_time_input">Inicial</string>
     <string name="final_date_or_time_input">Final</string>

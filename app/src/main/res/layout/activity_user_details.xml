@@ -1,22 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.UserDetailsActivity">
+    tools:context=".activities.UserDetailsActivity"
+    android:layout_marginBottom="45dp"
+    android:layout_marginHorizontal="8dp">
 
-    <TextView
-        android:id="@+id/text_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/image_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_test"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/user_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <TextView
+            android:id="@+id/user_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name_label"/>
+
+        <TextView
+            android:id="@+id/user_phone_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_phone_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name_text"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <TextView
+            android:id="@+id/user_phone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_phone_label"/>
+
+        <TextView
+            android:id="@+id/user_address_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_address_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_phone_text"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <TextView
+            android:id="@+id/user_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_address_label" />
+
+        <TextView
+            android:id="@+id/user_email_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_email_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_address_text"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <TextView
+            android:id="@+id/user_email_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_email_label"/>
+
+        <TextView
+            android:id="@+id/user_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_type_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_email_text"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <TextView
+            android:id="@+id/user_type_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_type_label"/>
+
+        <TextView
+            android:id="@+id/document_image_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_document_label"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_type_text"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"/>
+
+        <ImageView
+            android:id="@+id/document_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/document_image_label"/>
+
+        <Button
+            android:id="@+id/btn_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_validate_user_register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/document_image"
+            android:layout_marginTop="@dimen/margin_between_fields_in_user_details_screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/background_buttons"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
